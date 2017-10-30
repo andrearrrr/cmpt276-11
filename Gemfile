@@ -6,9 +6,12 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
+# Told me to add this when doing rails test:integration ?
+gem 'rails-controller-testing'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
+# Bootstrap framework for CSS
+gem 'bootstrap-sass', '3.3.7'
 # Use postgres as the database for Active Record
 gem 'pg'
 # Use Puma as the app server
