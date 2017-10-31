@@ -6,6 +6,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+#encryption for password hashing
+gem 'bcrypt',         '3.1.11'
 # Told me to add this when doing rails test:integration ?
 gem 'rails-controller-testing'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
