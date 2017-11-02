@@ -1,15 +1,9 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
-
-  def setup
-    @base_title = "MySportsPicks"
-  end
-
-  test "should get new" do
-    get signup_path
+  test "should get login" do
+    get users_login_url
     assert_response :success
-    assert_select "title", "Sign up | #{@base_title}"
   end
 
 end

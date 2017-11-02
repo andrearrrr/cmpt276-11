@@ -40,7 +40,6 @@ test:
 
 production:
   <<: *default
-  database: cmpt276_dev
+  database: cmpt276_pro
   username: cmpt276
   password: cmpt276
-  host: localhost
