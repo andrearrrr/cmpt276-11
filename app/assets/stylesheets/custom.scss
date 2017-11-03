@@ -107,7 +107,6 @@ $gray-medium-light: #eaeaea;
   box-sizing:         border-box;
 }
 
-<<<<<<< HEAD
 /* miscellaneous */
 
 .debug_dump {
@@ -117,7 +116,7 @@ $gray-medium-light: #eaeaea;
   margin-top: 45px;
   @include box_sizing;
 }
-=======
+
 /* forms */
 
 input, textarea, select, .uneditable-input {
@@ -145,4 +144,3 @@ input {
     color: $state-danger-text;
   }
 }
->>>>>>> a63163c3bea670da04c325d6163d3a0f3dc2783e
