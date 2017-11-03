@@ -96,6 +96,7 @@ footer {
     }
   }
 }
+
 /* mixins, variables, etc. */
 
 $gray-medium-light: #eaeaea;
@@ -115,7 +116,6 @@ $gray-medium-light: #eaeaea;
   margin-top: 45px;
   @include box_sizing;
 }
-
 /* side bar*/
 aside {
   section.user_info {
