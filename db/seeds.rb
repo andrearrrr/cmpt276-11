@@ -1,2 +1,3 @@
-User.create(name: "Test User 1", email: "testuser1@test.com", password: "testuser1")
-User.create(name: "Test User 2", email: "testuser2@test.com", password: "testuser2")
+User.create(name: "Sample User 1", email: "sample1@test.com", password: "cmpt276")
+User.create(name: "Sample User 2", email: "sample2@test.com", password: "cmpt276")
+User.create(name: "Admin User", email: "admin@test.com", password: "cmpt276", admin: 1)
