@@ -107,12 +107,30 @@ $gray-medium-light: #eaeaea;
   box-sizing:         border-box;
 }
 
-/* miscellaneous */
+/* forms */
 
-.debug_dump {
-  clear: both;
-  float: left;
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
   width: 100%;
-  margin-top: 45px;
+  margin-bottom: 15px;
   @include box_sizing;
+}
+
+input {
+  height: auto !important;
+}
+
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
+  }
 }
