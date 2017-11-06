@@ -15,7 +15,10 @@ module SessionsHelper
 	end
 
 	def is_admin?
-		return current_user.admin
+		if logged_in?
+			return current_user.admin?
+		else return false
+		end
 	end
 
 	# Logs out the current user.
