@@ -1,8 +1,13 @@
 <div class="center jumbotron">
-  <h1>MySportsPicks</h1>
+  <h1>Welcome to MySportsPicks!</h1>
+  <br>
 
-<div>
+<div class = "container-fluid">
+  <% if !logged_in? %>
   <%= link_to "Sign up now!", new_user_path, class: "btn btn-lg btn-primary" %><br><br>
-  <%= link_to "List of users", users_path, class: "btn btn-lg btn-primary" %>
+  <% end %>
+  <% if is_admin? %>
+  <h2><%= link_to "Manage Users", users_path %></h2>
+  <% end %>
 </div>
 </div>

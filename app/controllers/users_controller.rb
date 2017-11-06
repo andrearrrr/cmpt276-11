@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 	def index
+		if !is_admin?
+			flash[:danger] = "Access restricted to admins"
+			redirect_to root_path
+		end
 		@users = User.all
 		# implicit render 'users/index'
 	end
