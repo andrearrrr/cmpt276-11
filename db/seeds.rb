@@ -8,10 +8,12 @@ require 'csv'
 csv_text = File.read(Rails.root.join('lib', 'seeds', 'player_data.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'utf-8')
 
-csv.take(2).each do |row|
-  puts row.to_hash
-  puts row["Player"]
-  puts row['Season']
-	puts row['Identifier']
-	puts row['Pos']
+players = []
+csv.take(7).each do |row|
+	if !players.include? row['Player']
+	 	puts row['Player']
+		players << row['Player']
+	#else puts row['Player']
+	end
+	#puts row['Player']
 end
