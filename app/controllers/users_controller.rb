@@ -14,6 +14,11 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
+		if !(is_admin? || current_user == @user)
+			flash[:danger] = "Access restricted"
+			redirect_to root_path
+		end
+
 	end
 
 	def create
