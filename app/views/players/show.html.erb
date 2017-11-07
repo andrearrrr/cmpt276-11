@@ -1,2 +1,8 @@
-<h1>Players#show</h1>
-<p>Find me in app/views/players/show.html.erb</p>
+<p id="notice"><%= notice %></p>
+<h1><%= @player.name %></h2>
+
+<h4> Identifier: <%= @player.identifier %> </h4>
+<h4> Position: <%= @player.position %> </h4>
+
+<%= link_to "Back to List of Players", players_path %> <br>
+<%= link_to "Home", root_path %>

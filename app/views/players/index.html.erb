@@ -1,2 +1,23 @@
-<h1>Players#index</h1>
-<p>Find me in app/views/players/index.html.erb</p>
+<h1>Players</h1>
+
+
+<div class="table-responsive">
+<table class="table table-hover table-condensed col-md-3">
+    <thead>
+        <tr >
+            <th>Player</th>
+            <th>Identifer</th>
+            <th>Position</th>
+        </tr>
+    </thead>
+    <tbody>
+					<% @players.take(25).each do |player| %>
+					<tr>
+						<td> <%= link_to player.name, player_path(player.id) %> </td>
+						<td> <%= player.identifier %> </td>
+						<td> <%= player.position %> </td>
+					</tr>
+					<% end %>
+    </tbody>
+</table>
+</div>
