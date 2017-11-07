@@ -11,7 +11,7 @@
         </tr>
     </thead>
     <tbody>
-					<% @players.take(25).each do |player| %>
+					<% @players.take(50).each do |player| %>
 					<tr>
 						<td> <%= link_to player.name, player_path(player.id) %> </td>
 						<td> <%= player.identifier %> </td>
