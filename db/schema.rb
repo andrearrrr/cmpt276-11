@@ -10,10 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171106224057) do
+ActiveRecord::Schema.define(version: 20171107151005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "player_stats", force: :cascade do |t|
+    t.integer "player_id"
+    t.integer "season"
+    t.integer "age"
+    t.string "team"
+    t.integer "games"
+    t.integer "games_started"
+    t.float "minutes"
+    t.float "fg"
+    t.float "fga"
+    t.float "fgpct"
+    t.float "fg3"
+    t.float "fg3a"
+    t.float "fg3pct"
+    t.float "efgpct"
+    t.float "ft"
+    t.float "fta"
+    t.float "ftpct"
+    t.float "reboff"
+    t.float "rebdef"
+    t.float "rebtot"
+    t.float "assists"
+    t.float "steals"
+    t.float "blocks"
+    t.float "tovs"
+    t.float "points"
+    t.float "per"
+    t.float "tspct"
+    t.float "usage"
+    t.float "obpm"
+    t.float "dbpm"
+    t.float "bpm"
+    t.float "vorp"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "players", force: :cascade do |t|
     t.string "name"
