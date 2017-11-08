@@ -1,4 +1,4 @@
 class Player < ApplicationRecord
-	has_many :playerstats
+	has_many :player_stats
 	validates :identifier, uniqueness: true
 end

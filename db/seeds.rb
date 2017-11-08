@@ -42,7 +42,7 @@ def seed_player_stats
 		p.player_id = player.id
 		p.season = row["Season"]
 		p.age = row["Age"]
-		p.team = row["Team"]
+		p.team = row["Tm"]
 		p.games = row['G']
 		p.games_started = row['GS']
 		p.minutes = row['MP']
@@ -72,8 +72,8 @@ def seed_player_stats
 		p.bpm = row['BPM']
 		p.vorp = row['VORP']
 		p.save
-		puts p.save
 	end
 end
 
+seed_players
 seed_player_stats
