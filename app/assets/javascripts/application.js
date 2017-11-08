@@ -11,6 +11,12 @@
 // about supported directives.
 //
 //= require rails-ujs
+//= require jquery
 //= require turbolinks
+//= require dataTables/jquery.dataTables
+//= require players
 //= require_tree .
-//= require_tree .
+
+$( document ).ready( function() {
+  $('#players').dataTable();
+});

@@ -1,8 +1,8 @@
-<h1>Players</h1>
+<h1 id = "test">Players</h1>
 
 
 <div class="table-responsive">
-<table class="table table-hover table-condensed col-md-3">
+<table id = "players" class="table table-hover table-condensed col-md-3">
     <thead>
         <tr >
             <th>Player</th>
@@ -11,7 +11,7 @@
         </tr>
     </thead>
     <tbody>
-					<% @players.take(100).each do |player| %>
+					<% @players.each do |player| %>
 					<tr>
 						<td> <%= link_to player.name, player_path(player.id) %> </td>
 						<td> <%= player.identifier %> </td>
