@@ -75,5 +75,26 @@ def seed_player_stats
 	end
 end
 
+def seed_leagues
+	League.create(name: 'NBA', description: "National Basketball Association")
+end
+
+def seed_awards
+	nba = League.find_by(name: "NBA")
+	awards = [
+		{:name => "MVP", :description => "Most Valuable Player"},
+		{:name => "MIP", :description => "Most Improved Player"},
+		{:name => "DPOY", :description => "Defensive Player of the Year"},
+		{:name => "6MOY", :description => "Sixth Man of the Year"},
+		{:name => "ROY", :description => "Rookie of the Year"}
+	]
+
+	awards.each do |award|
+		Award.create(name: award[:name], description: award[:description], league_id: nba.id)
+	end
+end
+
 seed_players
 seed_player_stats
+seed_leagues
+seed_awards
