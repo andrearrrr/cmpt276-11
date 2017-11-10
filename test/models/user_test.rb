@@ -92,5 +92,9 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
 
+  #used to test for having app loggin in in two or more different browsers
+  test "authenticated? should return false for a user with nil digest" do
+    assert_not @user.authenticated?('')
+  end
 
 end
