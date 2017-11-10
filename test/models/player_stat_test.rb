@@ -4,8 +4,9 @@ class PlayerStatTest < ActiveSupport::TestCase
 	def setup
 		@player1 = Player.new(name: "My Player", identifier: "myplayer123",
 										 position: "PG")
+		@player1.save
+		@playerstat1 = PlayerStat.new(player_id: @player1.id, season: 2016, team: "BOS")
 
-		@playerstat1 = PlayerStat.new(player_id: @player1.id, season: 2012)
 	end
 
 	#test that creating a new user is working
@@ -21,8 +22,10 @@ class PlayerStatTest < ActiveSupport::TestCase
 
 	#test for blank id
 	test "season should be >= 2015" do
-	@playerstat1.season = 2000
+	@playerstat1.season = 2014
 	assert_not @playerstat1.valid?
+	@playerstat1.season = 2016
+	assert @playerstat1.valid?
 	end
 
 	test "identifer should be unique" do
