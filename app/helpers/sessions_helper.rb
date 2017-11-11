@@ -55,4 +55,18 @@ module SessionsHelper
 		@current_user = nil
 	end
 
+	#Methods for redirecting a user back to their intended page if they were required
+	#to log in first ("friendly forwarding")
+
+	# Redirects to stored location (or to the default).
+	def redirect_back_or(default)
+		redirect_to(session[:forwarding_url] || default)
+		session.delete(:forwarding_url)
+	end
+
+	# Stores the URL trying to be accessed.
+	def store_location
+		session[:forwarding_url] = request.original_url if request.get?
+	end
+
 end
