@@ -19,7 +19,7 @@ class User < ApplicationRecord
   has_secure_password
 
   #password must exist and be at least 6 characters
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
   #user.remember method
   attr_accessor :remember_token

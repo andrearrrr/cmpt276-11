@@ -8,7 +8,7 @@ end
 
 #encryption for password hashing
 gem 'bcrypt',         '3.1.11'
-# Told me to add this when doing rails test:integration ?
+# For integration tests
 gem 'rails-controller-testing'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
