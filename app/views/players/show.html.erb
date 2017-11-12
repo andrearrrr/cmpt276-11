@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+<h1><%= @player.name %></h2>
+
+<h4> Identifier: <%= @player.identifier %> </h4>
+<h4> Position: <%= @player.position %> </h4>
+
+<div class="table-responsive">
+<table class="table table-hover table-condensed col-md-3">
+    <thead>
+        <tr >
+            <th>Season</th>
+						<th>Age</th>
+            <th>Team</th>
+            <th>Mins</th>
+						<th>PTS</th>
+						<th>REB</th>
+						<th>AST</th>
+						<th>STL</th>
+						<th>BLK</th>
+						<th>PER</th>
+						<th>BPM</th>
+						<th>VORP</th>
+        </tr>
+    </thead>
+    <tbody>
+					<% @player.player_stats.order(season: :desc).each do |stat| %>
+					<tr>
+						<td> <%= stat.season %> </td>
+						<td> <%= stat.age %> </td>
+						<td> <%= stat.team %> </td>
+            <td> <%= stat.minutes %> </td>
+						<td> <%= stat.points %> </td>
+						<td> <%= stat.rebtot %> </td>
+						<td> <%= stat.assists %> </td>
+						<td> <%= stat.steals %> </td>
+						<td> <%= stat.blocks %> </td>
+						<td> <%= stat.per %> </td>
+						<td> <%= stat.bpm %> </td>
+						<td> <%= stat.vorp %> </td>
+					</tr>
+					<% end %>
+    </tbody>
+</table>
+</div>
