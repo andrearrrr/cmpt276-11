@@ -4,7 +4,6 @@ class User < ApplicationRecord
   #callback: make the email lowercase before saving to DB so that we can enforce the
   #uniqueness of emails (DB thinks different cases are different emails)
   before_save   :downcase_email
-
   #before creating a user, assign account activation stuff (and email them)
   before_create :create_activation_digest
 
