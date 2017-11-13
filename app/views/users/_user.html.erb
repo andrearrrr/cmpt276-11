@@ -5,4 +5,13 @@
     | <%= link_to "delete", user, method: :delete,
                                   data: { confirm: "You sure?" } %>
   <% end %>
+
+  <!-- FIX THISSSSS
+  <% if current_user.admin? && !current_user?(user) %>
+    | <%= link_to "edit", user, method: :update,
+                                  data: { confirm: "You sure?" } %>
+  <% end %>
+
+  -->
+
 </li>

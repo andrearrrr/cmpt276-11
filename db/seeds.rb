@@ -1,9 +1,26 @@
 require 'csv'
 
 def seed_users
-	User.create(name: "Sample User 1", email: "sample1@test.com", password: "cmpt276")
-	User.create(name: "Sample User 2", email: "sample2@test.com", password: "cmpt276")
-	User.create(name: "Admin User", email: "admin@test.com", password: "cmpt276", admin: true)
+	User.create(
+		name: "Sample User 1",
+		email: "sample1@test.com",
+		password: "cmpt276"
+		activated: true,
+		activated_at: Time.zone.now)
+
+	User.create(
+		name: "Sample User 2",
+		email: "sample2@test.com",
+		password: "cmpt276"
+		activated: true,
+		activated_at: Time.zone.now)
+
+	User.create(
+		name: "Admin User",
+		email: "admin@test.com",
+		password: "cmpt276",
+		activated: true,
+		activated_at: Time.zone.now)
 end
 
 def read_csv
