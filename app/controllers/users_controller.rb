@@ -22,7 +22,8 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
-    redirect_to root_url and return unless activated: true
+    #Line below might not work/might be weird???
+    redirect_to root_url and return unless User.where(activated: true)
 		if !(is_admin? || current_user == @user)
 			flash[:danger] = "Access restricted"
 			redirect_to root_path
