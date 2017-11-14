@@ -1,4 +1,9 @@
 class User < ApplicationRecord
+  # Micropost association
+  # "dependant: :destroy
+  # arranges for the dependent microposts to be destroyed when the user itself is destroyed
+  has_many :microposts, dependent: :destroy
+
 
   #callback: make the email lowercase before saving to DB so that we can enforce the
   #uniqueness of emails (DB thinks different cases are different emails)

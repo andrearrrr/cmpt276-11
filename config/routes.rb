@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   get '/players', to: 'players#index'
   get '/players/:id', to: 'players#show', as: "player"
   resources :users
-
   root 'static_pages#home'
 
 end
