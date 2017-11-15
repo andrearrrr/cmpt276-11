@@ -1,10 +1,5 @@
 Rails.application.routes.draw do
 
-
-  get 'picks/index'
-
-  get 'picks/new'
-
   get  '/help',    to: 'static_pages#help'
   get  '/about',   to: 'static_pages#about'
   get  '/contact', to: 'static_pages#contact'
@@ -16,6 +11,7 @@ Rails.application.routes.draw do
   get '/players', to: 'players#index'
   get '/players/:id', to: 'players#show', as: "player"
   resources :users
+  resources :picks
 
   root 'static_pages#home'
 

@@ -1,2 +1,6 @@
-<h1>Picks#new</h1>
-<p>Find me in app/views/picks/new.html.erb</p>
+<h1>Make a Pick</h1>
+<% if logged_in? %>
+<%= render 'form' %>
+<% else %>
+<p><%= link_to "Log in", login_path %> to make a pick! </p>
+<% end %>

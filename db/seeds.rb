@@ -76,7 +76,8 @@ def seed_player_stats
 end
 
 def seed_leagues
-	League.create(name: 'NBA', description: "National Basketball Association")
+	l = League.create(name: 'NBA', description: "National Basketball Association")
+	l.save
 end
 
 def seed_awards
@@ -90,7 +91,8 @@ def seed_awards
 	]
 
 	awards.each do |award|
-		Award.create(name: award[:name], description: award[:description], league_id: nba.id)
+		a = Award.create(name: award[:name], description: award[:description], league_id: nba.id)
+		a.save
 	end
 end
 
@@ -98,3 +100,4 @@ seed_players
 seed_player_stats
 seed_leagues
 seed_awards
+seed_users

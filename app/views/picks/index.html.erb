@@ -1,2 +1,8 @@
-<h1>Picks#index</h1>
-<p>Find me in app/views/picks/index.html.erb</p>
+<h3><%= link_to "Make a Pick", new_pick_path %></h3>
+
+<% @picks.each do |pick| %>
+	<%= pick.user.name %>
+	<%= pick.award.name %>
+	<%= pick.is_private %>
+	<%= link_to "View Pick", pick_path(pick) %> <br>
+<% end %>
