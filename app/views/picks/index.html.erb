@@ -1,8 +1,11 @@
 <h3><%= link_to "Make a Pick", new_pick_path %></h3>
 
 <% @picks.each do |pick| %>
-	<%= pick.user.name %>
+	<p> <%= pick.user.name %>
 	<%= pick.award.name %>
 	<%= pick.is_private %>
-	<%= link_to "View Pick", pick_path(pick) %> <br>
+	<%= link_to "View Pick", pick_path(pick) %> |
+	<%= link_to "Edit", edit_pick_path(pick) %> |
+	<%= link_to "Delete", pick_path(pick), data: { confirm: 'Are you sure?' }, :method => :delete %> </p>
+	 <br>
 <% end %>

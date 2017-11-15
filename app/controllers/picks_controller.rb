@@ -22,6 +22,25 @@ class PicksController < ApplicationController
 		end
 	end
 
+  def destroy
+    @pick = Pick.find(params[:id])
+    @pick.destroy
+    redirect_to picks_path, :notice => "Pick successfully deleted."
+  end
+
+  def edit
+    @pick = Pick.find(params[:id])
+  end
+
+  def update
+    @pick = Pick.find(params[:id])
+    if @pick.update(pick_params)
+      redirect_to pick_path(@pick), :notice => "Pick successfully updated."
+    else
+      render "edit"
+    end
+  end
+
   private
   def pick_params
     params.require(:pick).permit(:award_id, :player_id, :user_id, :league_id, :is_private)

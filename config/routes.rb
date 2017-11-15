@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
 
   get '/players', to: 'players#index'
+  get '/players/test', to: 'players#test'
   get '/players/:id', to: 'players#show', as: "player"
   resources :users
   resources :picks
