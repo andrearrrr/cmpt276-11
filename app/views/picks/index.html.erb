@@ -1,4 +1,31 @@
-<h3><%= link_to "Make a Pick", new_pick_path %></h3>
+<h1><%= link_to "Make a Pick", new_pick_path %></h1>
+
+<h2> List of Picks </h2>
+
+<div class="table-responsive">
+<table class="table table-hover table-condensed col-md-3">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Award</th>
+            <th>Pick</th>
+        </tr>
+    </thead>
+    <tbody>
+					<% @picks.each do |pick| %>
+					<tr>
+						<td> <%= pick.user.name %></td>
+						<td> <%= pick.award.name %> </td>
+						<td> <%= link_to pick.player.name, player_path(pick.player) %> </td>
+						<td> <%= link_to "View Pick", pick_path(pick) %></td>
+						<td> <%= link_to "Edit", edit_pick_path(pick) %> </td>
+						<td> <%= link_to "Delete", pick_path(pick), data: { confirm: 'Are you sure?' }, :method => :delete %> </td>
+					</tr>
+					<% end %>
+    </tbody>
+</table>
+</div>
+
 
 <% @picks.each do |pick| %>
 	<p> <%= pick.user.name %>

@@ -1,49 +1,5 @@
 <h1 id = "test">Players</h1>
 
-<% @leagues.each do |league| %>
-  <% league.awards.each do |award| %>
-  <p> League: <%= league.name %>, award: <%= award.name %>
-  <% end %>
-<% end %>
-
-<div class="table-responsive">
-<table class="table table-hover table-condensed col-md-3">
-    <thead>
-        <tr >
-            <th>League</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-					<% @leagues.each do |league| %>
-					<tr>
-						<td> <%= league.name %> </td>
-						<td> <%= league.description %> </td>
-					</tr>
-					<% end %>
-    </tbody>
-</table>
-</div>
-
-<div class="table-responsive">
-<table class="table table-hover table-condensed col-md-3">
-    <thead>
-        <tr >
-            <th>Award</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-					<% @awards.each do |award| %>
-					<tr>
-						<td> <%= award.name %> </td>
-						<td> <%= award.description %> </td>
-					</tr>
-					<% end %>
-    </tbody>
-</table>
-</div>
-
 <div class="table-responsive">
 <table id = "players" class="table table-hover table-condensed col-md-3">
     <thead>
