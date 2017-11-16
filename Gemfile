@@ -26,6 +26,7 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 gem "jquery-rails"
+gem "jquery-ui-rails"
 gem 'jquery-datatables-rails', github:'rweng/jquery-datatables-rails'
 gem 'jquery-turbolinks'
 # Use CoffeeScript for .coffee assets and views

@@ -12,12 +12,14 @@
 //
 //= require rails-ujs
 //= require jquery
+//= require jquery-ui
 //= require jquery.turbolinks
 //= require turbolinks
 //= require dataTables/jquery.dataTables
 //= require players
 //= require_tree .
 
-$( document ).ready( function() {
+jQuery ->
   $('#players').dataTable();
-});
+  $("#player_id").autocomplete
+  source: ["one", 'two', 'three']

@@ -20,6 +20,12 @@
     <%= f.label :player_id %><br>
     <%= collection_select( :pick, :player_id, Player.take(100), :id, :name_decorated) %>
   </div>
+
+  <div class="field">
+    <%= f.label :player_id %><br>
+    <%= f.text_field :player_id %>
+  </div>
+
 	<div class="field">
     <%= f.hidden_field :user_id, :value => current_user.id %>
   </div>
