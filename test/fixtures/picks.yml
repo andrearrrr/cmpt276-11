@@ -13,3 +13,10 @@ two:
   league: one
   award: two
   season: 2018
+
+three:
+  user: scott
+  player: one
+  league: one
+  award: two
+  season: 2018
