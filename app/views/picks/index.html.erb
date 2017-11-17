@@ -19,8 +19,10 @@
 							<td> <%= pick.award.name %> </td>
 							<td> <%= link_to pick.player.name, player_path(pick.player) %> </td>
 							<td> <%= link_to "View Pick", pick_path(pick) %></td>
+							<% if is_admin? %>
 							<td> <%= link_to "Edit", edit_pick_path(pick) %> </td>
 							<td> <%= link_to "Delete", pick_path(pick), data: { confirm: 'Are you sure?' }, :method => :delete %> </td>
+							<% end %>
 						</tr>
 						<% end %>
 	    </tbody>

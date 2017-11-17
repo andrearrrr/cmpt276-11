@@ -14,12 +14,16 @@ class PicksController < ApplicationController
   def create
     pick_params[:season] = current_season
 		@pick = Pick.new(pick_params)
-		if @pick.save
-			flash[:success] = "Pick submitted!"
-			redirect_to pick_path(@pick)
-		else
-			render 'new'
-		end
+    if logged_in?
+  		if @pick.save
+  			flash[:success] = "Pick submitted!"
+  			redirect_to pick_path(@pick)
+  		else
+  			render 'new'
+  		end
+    else
+      redirect_to picks_path, :notice => "You must be logged in to make a pick"
+    end
 	end
 
   def destroy
