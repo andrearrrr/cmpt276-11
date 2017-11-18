@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get '/players', to: 'players#index'
   get '/players/:id', to: 'players#show', as: "player"
   resources :users
+  resources :account_activations, only: [:edit]
 
   root 'static_pages#home'
 
