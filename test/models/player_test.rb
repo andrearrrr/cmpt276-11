@@ -3,8 +3,7 @@ require 'test_helper'
 class PlayerTest < ActiveSupport::TestCase
 
 	def setup
-		@player1 = Player.new(name: "My Player", identifier: "myplayer123",
-										 position: "PG")
+		@player1 = players(:one)
 	end
 
 	#test that creating a new user is working

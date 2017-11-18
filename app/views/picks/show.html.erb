@@ -1,0 +1,7 @@
+<h3>User: <%= @pick.user.name %> </h3>
+<h3>Award: <%= @pick.award.full_name %> </h3>
+<h3>Player: <%= @pick.player.name_decorated %> </h3>
+<h3>League: <%= @pick.league.name %> </h3>
+<h3>Privacy: <%= if @pick.is_private then "Private" else "Public" end %> </h3>
+<p> <%= link_to "Edit", edit_pick_path(@pick) %> </p>
+<p> <%= link_to "Delete", pick_path(@pick), data: { confirm: 'Are you sure?' }, :method => :delete %> </p>

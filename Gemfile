@@ -6,9 +6,12 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-#encryption for password hashing
+# used for pagination (e.g. won't show all users on a single long page)
+gem 'will_paginate',           '3.1.5'
+gem 'bootstrap-will_paginate', '1.0.0'
+# encryption for password hashing
 gem 'bcrypt',         '3.1.11'
-# Told me to add this when doing rails test:integration ?
+# For integration tests
 gem 'rails-controller-testing'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
@@ -26,6 +29,7 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 gem "jquery-rails"
+gem "jquery-ui-rails"
 gem 'jquery-datatables-rails', github:'rweng/jquery-datatables-rails'
 gem 'jquery-turbolinks'
 # Use CoffeeScript for .coffee assets and views

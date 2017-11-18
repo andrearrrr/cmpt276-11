@@ -1,6 +1,8 @@
 <p id="notice"><%= notice %></p>
 <h1> Users </h1>
 
+<!-- This was for admin users only; removed to see the Public users page
+
 <% @users.each do |user| %>
 	<h3>
   	<%= link_to user.name, user_path(user)  %>
@@ -12,3 +14,16 @@
 <% end %>
 
 <%= link_to "New User", new_user_path %>
+
+-->
+
+<% provide(:title, 'All users') %>
+<h1>All users</h1>
+
+<%= will_paginate %>
+
+<ul class="users">
+  <%= render @users %>
+</ul>
+
+<%= will_paginate %>
