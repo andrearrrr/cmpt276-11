@@ -1,5 +1,7 @@
 {
   "name": "sample_app",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "nba": "^4.0.1"
+  }
 }

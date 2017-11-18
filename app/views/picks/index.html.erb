@@ -10,15 +10,17 @@
 	            <th>User</th>
 	            <th>Award</th>
 	            <th>Player</th>
+							<th>Created At</th>
 	        </tr>
 	    </thead>
 	    <tbody>
 						<% @picks.each do |pick| %>
-							<% if !pick.is_private %>
+							<% if !pick.is_private || is_admin? %>
 								<tr>
 									<td> <%= pick.user.name %></td>
 									<td> <%= pick.award.name %> </td>
 									<td> <%= link_to pick.player.name, player_path(pick.player) %> </td>
+									<td> <%= pick.created_at.strftime("%Y-%m-%d") %> </td>
 									<td> <%= link_to "View Pick", pick_path(pick) %></td>
 									<% if is_admin? %>
 									<td> <%= link_to "Edit", edit_pick_path(pick) %> </td>
