@@ -4,14 +4,14 @@ def seed_users
 	User.create(
 		name: "Sample User 1",
 		email: "sample1@test.com",
-		password: "cmpt276"
+		password: "cmpt276",
 		activated: true,
 		activated_at: Time.zone.now)
 
 	User.create(
 		name: "Sample User 2",
 		email: "sample2@test.com",
-		password: "cmpt276"
+		password: "cmpt276",
 		activated: true,
 		activated_at: Time.zone.now)
 
@@ -113,6 +113,7 @@ def seed_awards
 	end
 end
 
+
 def seed_picks
 	users = User.all
 	nba = League.find_by(name: "NBA")
@@ -143,9 +144,9 @@ def seed_picks
 	end
 end
 
-# seed_players
-# seed_player_stats
-# seed_leagues
-# seed_awards
-# seed_users
+seed_players
+seed_player_stats
+seed_leagues
+seed_awards
+seed_users
 seed_picks
