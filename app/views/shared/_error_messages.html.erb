@@ -3,14 +3,14 @@ Had to rename this file to _error_messages.html.erb (i.e. had to add an
 underscore to the beginning) in order for line 7 in views>users>edit.html.erb to
 work. Seems partials (like this) need to be named in this way w/ a leading underscore
 -->
-
-<% if @user.errors.any? %>
+<!-- will accept users or microposts if written as object.errors.any-->
+<% if object.errors.any? %>
   <div id="error_explanation">
     <div class="alert alert-danger">
-      The form contains <%= pluralize(@user.errors.count, "error") %>.
+      The form contains <%= pluralize(object.errors.count, "error") %>.
     </div>
     <ul>
-    <% @user.errors.full_messages.each do |msg| %>
+    <% object.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>
     </ul>
