@@ -25,7 +25,7 @@ class MicropostsController < ApplicationController
   	private
 
     def micropost_params
-      params.require(:micropost).permit(:content)
+      params.require(:micropost).permit(:content, :picture)
     end
 
     # To prevent users from deleting another's users posts
