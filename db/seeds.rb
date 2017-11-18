@@ -115,3 +115,4 @@ seed_players
 seed_player_stats
 seed_leagues
 seed_awards
+seed_users
