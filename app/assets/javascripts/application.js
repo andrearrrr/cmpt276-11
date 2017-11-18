@@ -18,8 +18,3 @@
 //= require dataTables/jquery.dataTables
 //= require players
 //= require_tree .
-
-jQuery ->
-  $('#players').dataTable();
-  $("#player_id").autocomplete
-  source: ["one", 'two', 'three']

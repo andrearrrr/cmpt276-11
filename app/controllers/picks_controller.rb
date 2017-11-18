@@ -5,10 +5,20 @@ class PicksController < ApplicationController
 
   def show
     @pick = Pick.find(params[:id])
+    if (@pick.is_private) &&  (@pick.user_id != current_user.id)
+      flash[:danger] = "Pick is private - Access restricted"
+  		redirect_to picks_path
+    end
   end
 
   def new
     @pick = Pick.new
+    @players = Player.all
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @pick }
+      format.js
+    end
   end
 
   def create
