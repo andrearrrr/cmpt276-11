@@ -13,5 +13,7 @@ Rails.application.routes.draw do
   get '/players/:id', to: 'players#show', as: "player"
   resources :users
   root 'static_pages#home'
+  resources :microposts,          only: [:create, :destroy]
+
 
 end
