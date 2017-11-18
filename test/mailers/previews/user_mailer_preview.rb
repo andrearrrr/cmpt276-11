@@ -9,6 +9,7 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.account_activation(user)
   end
 
+  #PASSWORD RESET NOT YET IMPLEMENTED BY ACCOUNT-ACTIVIATION BRANCH
   # Preview this email at
   # http://localhost:5000/rails/mailers/user_mailer/password_reset
   def password_reset

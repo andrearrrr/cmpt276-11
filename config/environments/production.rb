@@ -62,6 +62,25 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "sample_app_#{Rails.env}"
   config.action_mailer.perform_caching = false
 
+  #For sending emails (account activation)
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  host = 'thawing-scrubland-99207.herokuapp.com'
+  config.action_mailer.default_url_options =
+  { host: 'https://thawing-scrubland-99207.herokuapp.com/' }
+
+  ActionMailer::Base.smtp_settings = {
+    :address        => 'smtp.gmail.com',
+    :port           => '587',
+    :authentication => :plain,
+    #shouldn't hard code these but doing it now because don't understand
+    #how else to do it
+    :user_name      => 'mysportspicksmailer@gmail.com',
+    :password       => 'mysportspicks',
+    :domain         => 'https://thawing-scrubland-99207.herokuapp.com/',
+    :enable_starttls_auto => true
+  }
+
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
