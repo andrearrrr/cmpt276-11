@@ -1,0 +1,22 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: michael
+  player: one
+  league: one
+  award: one
+  season: 2018
+
+two:
+  user: michael
+  player: one
+  league: one
+  award: two
+  season: 2018
+
+three:
+  user: scott
+  player: one
+  league: one
+  award: two
+  season: 2018

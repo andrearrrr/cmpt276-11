@@ -93,7 +93,8 @@ def seed_player_stats
 end
 
 def seed_leagues
-	League.create(name: 'NBA', description: "National Basketball Association")
+	l = League.create(name: 'NBA', description: "National Basketball Association")
+	l.save
 end
 
 def seed_awards
@@ -107,7 +108,39 @@ def seed_awards
 	]
 
 	awards.each do |award|
-		Award.create(name: award[:name], description: award[:description], league_id: nba.id)
+		a = Award.create(name: award[:name], description: award[:description], league_id: nba.id)
+		a.save
+	end
+end
+
+
+def seed_picks
+	users = User.all
+	nba = League.find_by(name: "NBA")
+	awards = Award.all
+	player_id = 30
+	privacy = true
+
+	users.each do |user|
+		puts user.to_json
+		if !user.admin
+			awards.each do |award|
+				p = Pick.create(
+					user_id: user.id,
+					award_id: award.id,
+					player_id: player_id,
+					season: 2018,
+					league_id: nba.id,
+					is_private: privacy
+				)
+				puts p.to_json
+				p.save
+				# alternate the privacy setting of each pick
+				privacy = if privacy then false else true end
+				# increment the player id
+				player_id += 1
+			end
+		end
 	end
 end
 
@@ -116,3 +149,4 @@ seed_player_stats
 seed_leagues
 seed_awards
 seed_users
+seed_picks

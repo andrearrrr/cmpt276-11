@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   get  '/help',    to: 'static_pages#help'
   get  '/about',   to: 'static_pages#about'
   get  '/contact', to: 'static_pages#contact'
@@ -10,8 +9,10 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
 
   get '/players', to: 'players#index'
+  get '/players/test', to: 'players#test'
   get '/players/:id', to: 'players#show', as: "player"
   resources :users
+  resources :picks
   resources :account_activations, only: [:edit]
 
   root 'static_pages#home'

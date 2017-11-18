@@ -3,7 +3,3 @@
 one:
   name: nba
   description: MyString
-
-two:
-  name: mlb
-  description: MyString
