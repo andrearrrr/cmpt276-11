@@ -12,11 +12,16 @@
       <%= f.label :email %>
       <%= f.email_field :email, class: 'form-control' %>
 
+      <!-- Removing this, because I think that password change should be
+      separate from changing account settings like name and email
+
       <%= f.label :password %>
       <%= f.password_field :password, class: 'form-control' %>
 
       <%= f.label :password_confirmation, "Confirmation" %>
       <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+      -->
 
       <%= f.submit "Save changes", class: "btn btn-primary" %>
     <% end %>
