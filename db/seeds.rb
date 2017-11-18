@@ -4,14 +4,14 @@ def seed_users
 	User.create(
 		name: "Sample User 1",
 		email: "sample1@test.com",
-		password: "cmpt276"
+		password: "cmpt276",
 		activated: true,
 		activated_at: Time.zone.now)
 
 	User.create(
 		name: "Sample User 2",
 		email: "sample2@test.com",
-		password: "cmpt276"
+		password: "cmpt276",
 		activated: true,
 		activated_at: Time.zone.now)
 
