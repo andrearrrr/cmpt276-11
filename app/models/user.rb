@@ -1,9 +1,32 @@
 class User < ApplicationRecord
   has_many :picks
+
   #setting up relationship for friendships
-  has_many :active_relationships, class_name:  "Relationship",
-                                  foreign_key: "follower_id",
-                                  dependent:   :destroy
+  has_many :active_relationships,   class_name:   "Relationship",
+                                    foreign_key:  "follower_id",
+                                    dependent:    :destroy
+  has_many :passive_relationships, class_name:    "Relationship",
+                                   foreign_key:   "followed_id",
+                                   dependent:     :destroy
+  has_many :following, through: :active_relationships,  source: :followed
+  has_many :followers, through: :passive_relationships, source: :follower
+
+  ##functions for friendships##
+  #friends other_user (1 direction)
+  def friend(other_user)
+    following << other_user
+  end
+
+#unfriends the other_user (1 direction)
+  def unfriend(other_user)
+    following.delete(other_user)
+  end
+
+#Returns true if current user is friends with other_user (1 direction)
+  def friends?(other_user)
+    following.include?(other_user)
+  end
+
 
 
   attr_accessor :remember_token, :activation_token

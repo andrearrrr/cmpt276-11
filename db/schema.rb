@@ -23,16 +23,6 @@ ActiveRecord::Schema.define(version: 20171119023519) do
     t.string "description"
   end
 
-  create_table "friendships", force: :cascade do |t|
-    t.integer "send_id"
-    t.integer "recieve_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["recieve_id"], name: "index_friendships_on_recieve_id"
-    t.index ["send_id", "recieve_id"], name: "index_friendships_on_send_id_and_recieve_id", unique: true
-    t.index ["send_id"], name: "index_friendships_on_send_id"
-  end
-
   create_table "leagues", force: :cascade do |t|
     t.string "name"
     t.string "description"
