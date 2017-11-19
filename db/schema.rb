@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171116221715) do
+ActiveRecord::Schema.define(version: 20171118234035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,16 @@ ActiveRecord::Schema.define(version: 20171116221715) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "description"
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.integer "send_id"
+    t.integer "recieve_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recieve_id"], name: "index_friendships_on_recieve_id"
+    t.index ["send_id", "recieve_id"], name: "index_friendships_on_send_id_and_recieve_id", unique: true
+    t.index ["send_id"], name: "index_friendships_on_send_id"
   end
 
   create_table "leagues", force: :cascade do |t|
@@ -92,7 +102,7 @@ ActiveRecord::Schema.define(version: 20171116221715) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
-    t.boolean "admin"
+    t.boolean "admin", default: false
     t.string "remember_digest"
     t.string "activation_digest"
     t.boolean "activated", default: false
