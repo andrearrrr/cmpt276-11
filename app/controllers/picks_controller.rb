@@ -1,6 +1,7 @@
 class PicksController < ApplicationController
   def index
     @picks = Pick.all
+    @awards = Award.all
   end
 
   def show

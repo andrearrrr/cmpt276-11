@@ -144,9 +144,9 @@ def seed_picks
 	end
 end
 
+seed_users
 seed_players
 seed_player_stats
 seed_leagues
 seed_awards
-seed_users
 seed_picks
