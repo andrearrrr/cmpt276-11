@@ -1,9 +1,10 @@
 class User < ApplicationRecord
   has_many :picks
   #setting up relationship for friendships
-  has_many :active_friendships, class_name:   "Friendship",
-                                foreign_key:  "send_id",
-                                dependent:    :destroy
+  has_many :active_relationships, class_name:  "Relationship",
+                                  foreign_key: "follower_id",
+                                  dependent:   :destroy
+
 
   attr_accessor :remember_token, :activation_token
   #callback: make the email lowercase before saving to DB so that we can enforce the
