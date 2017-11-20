@@ -97,4 +97,13 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.authenticated?(:remember, '')
   end
 
+  #Deleting an user also deletes their respective posts
+  test "associated posts should be destroyed" do
+    @user.save
+    @user.posts.create!(content: "Lorem ipsum")
+    assert_difference 'Post.count', -1 do
+      @user.destroy
+    end
+  end
+
 end

@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_many :picks
-  
+  has_many :posts, dependent: :destroy
+
+
   attr_accessor :remember_token, :activation_token
   #callback: make the email lowercase before saving to DB so that we can enforce the
   #uniqueness of emails (DB thinks different cases are different emails)

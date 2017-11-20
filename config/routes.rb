@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   resources :users
   resources :picks
   resources :account_activations, only: [:edit]
+  get '/posts/:id', to: 'posts#index', as: 'post'
+  resources :posts, only: [:create, :destroy]
 
   root 'static_pages#home'
 
