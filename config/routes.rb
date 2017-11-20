@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       get :outgoing_friends, :incoming_friends, :friends
     end
   end
+  resources :relationships
   resources :picks
   resources :account_activations, only: [:edit]
 

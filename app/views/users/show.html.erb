@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 <h2> Hello <%= @user.name %></h2>
-
+<h2><%= render 'friend_form' if logged_in? %></h2>
 <h4> Name: <%= @user.name %> </h4>
 <h4> Email: <%= @user.email %> </h4>
 
