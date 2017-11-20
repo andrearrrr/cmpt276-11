@@ -147,7 +147,7 @@ end
 
 # Users
 def seed_fake_users
-99.times do |n|
+10.times do |n|
   name  = SecureRandom.hex(10)
   email = name.concat("@email.com")
   password = "password"
@@ -163,8 +163,8 @@ end
 def seed_fake_relationships
 users = User.all
 user  = users.first
-following = users[2..50]
-followers = users[3..40]
+following = users[1..7]
+followers = users[2..11]
 following.each { |followed| user.friend(followed) }
 followers.each { |follower| follower.friend(user) }
 end
@@ -181,11 +181,11 @@ end
 
 
 
-#seed_players
-#seed_player_stats
-#seed_leagues
-#seed_awards
+seed_players
+seed_player_stats
+seed_leagues
+seed_awards
 seed_users
-#seed_picks
+seed_picks
 seed_fake_users
 seed_fake_relationships
