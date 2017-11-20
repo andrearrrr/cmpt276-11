@@ -5,8 +5,11 @@ class PicksController < ApplicationController
   end
 
   def show
-    @pick = Pick.find(params[:id])
-    if (@pick.is_private) &&  (@pick.user_id != current_user.id)
+    @pick = Pick.find_by(id: params[:id])
+    if @pick.nil?
+      flash[:danger] = "Pick does not exist"
+  		redirect_to picks_path
+    elsif (@pick.is_private) &&  (@pick.user_id != current_user.id)
       flash[:danger] = "Pick is private - Access restricted"
   		redirect_to picks_path
     end
