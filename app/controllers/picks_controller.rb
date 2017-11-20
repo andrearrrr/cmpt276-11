@@ -40,7 +40,7 @@ class PicksController < ApplicationController
   def destroy
     @pick = Pick.find(params[:id])
     @pick.destroy
-    redirect_to picks_path, :notice => "Pick successfully deleted."
+    redirect_to user_path(current_user), :notice => "Pick successfully deleted."
   end
 
   def edit
