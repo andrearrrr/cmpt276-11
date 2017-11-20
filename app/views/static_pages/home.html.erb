@@ -5,6 +5,8 @@
 <div class = "container-fluid">
   <% if !logged_in? %>
   <%= link_to "Sign up now!", new_user_path, class: "btn btn-lg btn-primary" %><br><br>
+  <% else %>
+  <%= link_to "Make a pick now!", picks_path, class: "btn btn-lg btn-primary" %><br><br>
   <% end %>
   <% if is_admin? %>
   <h2><%= link_to "Manage Users", users_path %></h2>
