@@ -24,7 +24,6 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
-    @friends = @user.following.paginate(page: params[:page]) & @user.followers.paginate(page: params[:page]
     #Line below might not work/might be weird???
     #redirect_to root_url and return unless User.where(activated: true)
 		if !(is_admin? || current_user == @user)
