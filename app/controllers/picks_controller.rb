@@ -18,11 +18,6 @@ class PicksController < ApplicationController
   def new
     @pick = Pick.new
     @players = Player.all
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @pick }
-      format.js
-    end
   end
 
   def create
@@ -63,4 +58,5 @@ class PicksController < ApplicationController
   def pick_params
     params.require(:pick).permit(:award_id, :player_id, :user_id, :league_id, :is_private, :season)
   end
+
 end
