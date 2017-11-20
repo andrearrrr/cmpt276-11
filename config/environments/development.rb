@@ -26,14 +26,14 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
-  #Mailer stuff...
-'''
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :smtp
-  host = 'localhost:5000'
-  config.action_mailer.default_url_options =
-  { host: 'localhost:5000' }
-'''
+  #Mailer stuff...(Can we delete? It's conflicting with my rake db:reset)
+
+  #config.action_mailer.raise_delivery_errors = true
+  #config.action_mailer.delivery_method = :smtp
+  #host = 'localhost:5000'
+  #config.action_mailer.default_url_options =
+  #{ host: 'localhost:5000' }
+
   config.action_mailer.smtp_settings = {
   address: "smtp.gmail.com",
   port: 587,
@@ -43,7 +43,7 @@ Rails.application.configure do
   user_name: ENV["GMAIL_USERNAME"],
   password: ENV["GMAIL_PASSWORD"]
   }
-  
+
 #Testing mail view
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :test
