@@ -1,4 +1,8 @@
 class PicksController < ApplicationController
+  before_action :logged_in_user, only: :show
+  before_action :correct_user,   only: [:edit, :update, :destory, :create]
+  before_action :admin_user,     only: [:edit, :update, :destory]
+
   def index
     @picks = Pick.all
     @awards = Award.all
@@ -63,4 +67,26 @@ class PicksController < ApplicationController
   def pick_params
     params.require(:pick).permit(:award_id, :player_id, :user_id, :league_id, :is_private, :season)
   end
+
+  # Before filters
+
+	# Confirms a logged-in user.
+	def logged_in_user
+		unless logged_in?
+			store_location
+			flash[:danger] = "Please log in."
+			redirect_to login_url
+		end
+	end
+
+	# Confirms the correct user.
+	def correct_user
+		@user = User.find(params[:id])
+    redirect_to(root_url) unless current_user?(@user) || current_user.admin?
+	end
+
+	# Confirms an admin user.
+	def admin_user
+		redirect_to(root_url) unless current_user.admin?
+	end
 end
