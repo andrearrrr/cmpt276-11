@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy,
+  #adding some logic for friends pages (only need this if mutual friends list is not private?)
+                                         :friends]
   #adding some logic for friends pages
-                                        :following, :followers]
-	before_action :correct_user,   only: [:edit, :update]
+	before_action :correct_user,   only: [:edit, :update, :outgoing_friends, :incoming_friends, :friends]
 	before_action :admin_user,     only: :destroy
 
 	def index
