@@ -14,17 +14,21 @@ class User < ApplicationRecord
   ##functions for friendships##
   #friends other_user (1 direction)
   def friend(other_user)
-    following << other_user
+    self.following << other_user
   end
 
 #unfriends the other_user (1 direction)
   def unfriend(other_user)
-    following.delete(other_user)
+    self.following.delete(other_user)
   end
 
 #Returns true if current user is friends with other_user (1 direction)
   def friends?(other_user)
-    following.include?(other_user)
+    self.following.include?(other_user)
+  end
+
+  def mutualfriends?(other_user)
+    self.following.include?(other_user) && other_user.followers.include?(self)
   end
 
 

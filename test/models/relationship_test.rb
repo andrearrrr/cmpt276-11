@@ -21,7 +21,7 @@ class RelationshipTest < ActiveSupport::TestCase
     assert_not @relationship.valid?
   end
 
-  test "should follow and unfollow a user" do
+  test "should friend and unfriend a user" do
     michael = users(:michael)
     archer = users(:archer)
     assert_not michael.friends?(archer)
@@ -33,5 +33,26 @@ class RelationshipTest < ActiveSupport::TestCase
 
     assert_not michael.friends?(archer)
   end
+
+  #test "should show mutural friends" do
+  #  michael = users(:michael)
+  #  archer = users(:archer)
+
+  #  assert_not michael.friends?(archer)
+  #  assert_not archer.friends?(michael)
+  #  assert_not michael.mutualfriends?(archer)
+  #  assert_not archer.mutualfriends?(michael)
+
+  #  michael.friend(archer)
+  #  assert michael.friends?(archer)
+  #  assert_not michael.mutualfriends?(archer)
+
+  #  archer.friend(michael)
+  #  assert archer.friends?(michael)
+
+  #  assert michael.mutualfriends?(archer)
+    #assert archer.mutualfriends?(michael)
+
+  #end
 
 end

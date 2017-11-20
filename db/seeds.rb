@@ -160,12 +160,15 @@ def seed_fake_users
 
 end
 
+def seed_fake_relationships
 users = User.all
 user  = users.first
 following = users[2..50]
 followers = users[3..40]
 following.each { |followed| user.friend(followed) }
 followers.each { |follower| follower.friend(user) }
+end
+
 end
 # Microposts
 #users = User.order(:created_at).take(6)
@@ -185,3 +188,4 @@ end
 seed_users
 #seed_picks
 seed_fake_users
+#seed_fake_relationships

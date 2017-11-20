@@ -64,17 +64,24 @@ class UsersController < ApplicationController
     end
   end
 
-  def following
+  def outgoing_friends
     @title  = "Outgoing Friends"
     @user   = User.find(params[:id])
     @users  = @user.following.paginate(page: params[:page])
     render 'show_follow'
   end
 
-  def followers
+  def incoming_friends
     @title  = "Incoming Friends"
     @user   = User.find(params[:id])
     @users  = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  def friends
+    @title  = "Friends"
+    @user   = User.find(params[:id])
+    @users = @user.following.paginate(page: params[:page]) & @user.followers.paginate(page: params[:page])
     render 'show_follow'
   end
 

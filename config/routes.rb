@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get '/players/:id', to: 'players#show', as: "player"
   resources :users do
     member do
-      get :following, :followers
+      get :outgoing_friends, :incoming_friends, :friends
     end
   end
   resources :picks
