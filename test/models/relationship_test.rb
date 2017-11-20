@@ -7,6 +7,10 @@ class RelationshipTest < ActiveSupport::TestCase
                                      followed_id: users(:archer).id)
   end
 
+  teardown do
+    Rails.cache.clear
+  end
+
   test "should be valid" do
     assert @relationship.valid?
   end
@@ -34,25 +38,26 @@ class RelationshipTest < ActiveSupport::TestCase
     assert_not michael.friends?(archer)
   end
 
-  #test "should show mutural friends" do
-  #  michael = users(:michael)
-  #  archer = users(:archer)
+  test "should show mutural friends" do
+    michael = users(:michael)
+    archer = users(:archer)
 
-  #  assert_not michael.friends?(archer)
-  #  assert_not archer.friends?(michael)
-  #  assert_not michael.mutualfriends?(archer)
-  #  assert_not archer.mutualfriends?(michael)
+    assert_not michael.friends?(archer)
+    assert_not archer.friends?(michael)
+    assert_not michael.mutualfriends?(archer)
+    assert_not archer.mutualfriends?(michael)
 
-  #  michael.friend(archer)
-  #  assert michael.friends?(archer)
-  #  assert_not michael.mutualfriends?(archer)
+    michael.friend(archer)
+    assert michael.friends?(archer)
+    assert_not michael.mutualfriends?(archer)
+    assert_not archer.mutualfriends?(michael)
 
-  #  archer.friend(michael)
-  #  assert archer.friends?(michael)
+    archer.friend(michael)
+    assert archer.friends?(michael)
 
-  #  assert michael.mutualfriends?(archer)
-    #assert archer.mutualfriends?(michael)
+    assert michael.mutualfriends?(archer)
+    assert archer.mutualfriends?(michael)
 
-  #end
+  end
 
 end

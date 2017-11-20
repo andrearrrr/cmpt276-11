@@ -28,7 +28,7 @@ class User < ApplicationRecord
   end
 
   def mutualfriends?(other_user)
-    self.following.include?(other_user) && other_user.followers.include?(self)
+    self.following.include?(other_user) && self.followers.include?(other_user)
   end
 
 
