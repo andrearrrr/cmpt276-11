@@ -1,6 +1,3 @@
-<p id="notice"><%= notice %></p>
-<h2> Hello <%= @user.name %></h2>
-
 <h4> Name: <%= @user.name %> </h4>
 <h4> Email: <%= @user.email %> </h4>
 
@@ -20,6 +17,8 @@
 </div>
 
 <h1> My Picks </h1>
+<% if @user.picks.count > 0 %>
+
 <div class="table-responsive">
 <table class="table table-hover table-condensed col-md-3">
     <thead>
@@ -43,3 +42,8 @@
     </tbody>
 </table>
 </div>
+<%= link_to "Make More Picks", new_pick_path, class: "btn btn-primary btn-block" %>
+<% else %>
+<p> You haven't made any picks yet. </p>
+<%= link_to "Make a Pick", new_pick_path, class:"btn btn-primary btn-block"%>
+<% end %>
