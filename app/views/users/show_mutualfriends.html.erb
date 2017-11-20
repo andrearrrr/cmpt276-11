@@ -1,6 +1,6 @@
 <% provide(:title, @title) %>
-
   <div class="col-md-8">
+    <h5><%= link_to "Go Back", user_path(@user) %></h5>
     <h3><%= @title %></h3>
     <% if @users.any? %>
       <ul class="users follow">
@@ -8,3 +8,4 @@
       </ul>
     <% end %>
   </div>
+</div>

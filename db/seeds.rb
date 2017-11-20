@@ -188,4 +188,4 @@ end
 seed_users
 #seed_picks
 seed_fake_users
-#seed_fake_relationships
+seed_fake_relationships

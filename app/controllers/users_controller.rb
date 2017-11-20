@@ -68,21 +68,21 @@ class UsersController < ApplicationController
     @title  = "Outgoing Friends"
     @user   = User.find(params[:id])
     @users  = @user.following.paginate(page: params[:page])
-    render 'show_follow'
+    render 'show_friends'
   end
 
   def incoming_friends
     @title  = "Incoming Friends"
     @user   = User.find(params[:id])
     @users  = @user.followers.paginate(page: params[:page])
-    render 'show_follow'
+    render 'show_friends'
   end
 
   def friends
     @title  = "Friends"
     @user   = User.find(params[:id])
     @users = @user.following.paginate(page: params[:page]) & @user.followers.paginate(page: params[:page])
-    render 'show_follow'
+    render 'show_mutualfriends'
   end
 
 	private
