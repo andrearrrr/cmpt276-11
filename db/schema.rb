@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20171119052403) do
+=======
+ActiveRecord::Schema.define(version: 20171118035600) do
+>>>>>>> 12286c2821b316c9dd64bf688abc6fd3da0734d5
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +34,7 @@ ActiveRecord::Schema.define(version: 20171119052403) do
     t.datetime "updated_at", null: false
   end
 
+<<<<<<< HEAD
   create_table "picks", force: :cascade do |t|
     t.integer "user_id"
     t.integer "player_id"
@@ -39,6 +44,16 @@ ActiveRecord::Schema.define(version: 20171119052403) do
     t.datetime "updated_at", null: false
     t.integer "league_id"
     t.boolean "is_private"
+=======
+  create_table "microposts", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "picture"
+    t.index ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_microposts_on_user_id"
+>>>>>>> 12286c2821b316c9dd64bf688abc6fd3da0734d5
   end
 
   create_table "player_stats", force: :cascade do |t|
@@ -112,4 +127,5 @@ ActiveRecord::Schema.define(version: 20171119052403) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "microposts", "users"
 end

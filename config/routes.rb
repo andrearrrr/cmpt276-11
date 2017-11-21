@@ -26,5 +26,7 @@ Rails.application.routes.draw do
   resources :password_resets,    only: [:new, :create, :edit, :update]
 
   root 'static_pages#home'
+  resources :microposts, only: [:create, :destroy]
+
 
 end
