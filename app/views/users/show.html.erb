@@ -63,8 +63,12 @@
     </tbody>
 </table>
 </div>
-<%= link_to "Make More Picks", new_pick_path, class: "btn btn-primary btn-block" %>
+<%= if current_user == @user
+  link_to "Make More Picks", new_pick_path, class: "btn btn-primary btn-block"
+end%>
 <% else %>
 <p> You haven't made any picks yet. </p>
-<%= link_to "Make a Pick", new_pick_path, class:"btn btn-primary btn-block"%>
+<%= if current_user == @user
+link_to "Make a Pick", new_pick_path, class:"btn btn-primary btn-block"
+end%>
 <% end %>
