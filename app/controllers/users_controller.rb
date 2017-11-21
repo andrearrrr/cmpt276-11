@@ -25,6 +25,7 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
+    @microposts = @user.microposts.paginate(page: params[:page])
     #Line below might not work/might be weird???
     #redirect_to root_url and return unless User.where(activated: true)
 
@@ -33,12 +34,6 @@ class UsersController < ApplicationController
 			#flash[:danger] = "Access restricted"
 			#redirect_to root_path
 		#end
-		@microposts = @user.microposts.paginate(page: params[:page])
-		if !(is_admin? || current_user == @user)
-			flash[:danger] = "Access restricted"
-			redirect_to root_path
-		end
-
 
 	end
 
