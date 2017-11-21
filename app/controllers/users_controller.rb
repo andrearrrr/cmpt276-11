@@ -33,12 +33,6 @@ class UsersController < ApplicationController
 			#flash[:danger] = "Access restricted"
 			#redirect_to root_path
 		#end
-		@microposts = @user.microposts.paginate(page: params[:page])
-		if !(is_admin? || current_user == @user)
-			flash[:danger] = "Access restricted"
-			redirect_to root_path
-		end
-
 
 	end
 
@@ -102,8 +96,14 @@ class UsersController < ApplicationController
 
 	# Before filters
 
-	# Confirms a logged-in user is already in the application controller.
-
+	# Confirms a logged-in user.
+	def logged_in_user
+		unless logged_in?
+			store_location
+			flash[:danger] = "Please log in."
+			redirect_to login_url
+		end
+	end
 
 	# Confirms the correct user.
 	def correct_user
