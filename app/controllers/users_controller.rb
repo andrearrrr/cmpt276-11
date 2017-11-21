@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   #adding some logic for friends pages (only need this if mutual friends list is not private?)
                                          :friends]
   #adding some logic for friends pages
-	before_action :correct_user,   only: [:edit, :update, :outgoing_friends, :incoming_friends, :friends]
+	before_action :correct_user,   only: [:edit, :update, :outgoing_friends, :incoming_friends]
 	before_action :admin_user,     only: :destroy
 
 	def index
@@ -115,5 +115,5 @@ class UsersController < ApplicationController
 	def admin_user
 		redirect_to(root_url) unless current_user.admin?
 	end
-  
+
 end
