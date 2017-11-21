@@ -1,6 +1,10 @@
 <h2><%= render 'friend_form' if logged_in? %></h2>
 <h4> Name: <%= @user.name %> </h4>
-<h4> Email: <%= @user.email %> </h4>
+<h4> Email: <%=if current_user == @user
+   @user.email
+ else
+   "Email Hidden"
+ end %> </h4>
 
 <div>
   <%= link_to "Home", root_path %>
@@ -9,10 +13,14 @@
   <%= link_to "Friends", friends_user_path(@user) %>
 </div>
 <div>
-  <%= link_to "Friend Requests Sent", outgoing_friends_user_path(@user) %>
+  <%= if current_user == @user
+    link_to "Friend Requests Sent", outgoing_friends_user_path(@user)
+  end %>
 </div>
 <div>
-  <%= link_to "Friend Requests Recieved", incoming_friends_user_path(@user) %>
+  <%= if current_user == @user
+    link_to "Friend Requests Recieved", incoming_friends_user_path(@user)
+  end %>
 </div>
 
 
