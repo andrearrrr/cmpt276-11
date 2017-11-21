@@ -46,4 +46,19 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_url
   end
 
+  #Tests for friendships
+  test "should redirect outgoing friends when not correct user" do
+    get outgoing_friends_user_path(@user)
+    assert_redirected_to root_url
+  end
+
+  test "should redirect incoming friends when not correct user" do
+    get incoming_friends_user_path(@user)
+    assert_redirected_to root_url
+  end
+
+  test "should redirect friends when not logged in" do
+    get friends_user_path(@user)
+    assert_redirected_to login_url
+  end
 end

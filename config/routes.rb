@@ -15,7 +15,12 @@ Rails.application.routes.draw do
   get '/players', to: 'players#index'
   get '/players/test', to: 'players#test'
   get '/players/:id', to: 'players#show', as: "player"
-  resources :users
+  resources :users do
+    member do
+      get :outgoing_friends, :incoming_friends, :friends
+    end
+  end
+  resources :relationships
   resources :picks
   resources :account_activations, only: [:edit]
   resources :password_resets,    only: [:new, :create, :edit, :update]

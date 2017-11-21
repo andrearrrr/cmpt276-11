@@ -19,7 +19,12 @@ def seed_users
 		name: "Admin User",
 		email: "admin@test.com",
 		password: "cmpt276",
+<<<<<<< HEAD
 		activated: 1,
+=======
+		activated: true,
+		admin: true,
+>>>>>>> friends
 		activated_at: Time.zone.now)
 end
 
@@ -144,9 +149,47 @@ def seed_picks
 	end
 end
 
-seed_users
+# Users
+def seed_fake_users
+10.times do |n|
+  name  = SecureRandom.hex(10)
+  email = name.concat("@email.com")
+  password = "password"
+  User.create!(name:  name,
+               email: email,
+               password:              password,
+               password_confirmation: password,
+               activated: true,
+               activated_at: Time.zone.now)
+
+end
+
+def seed_fake_relationships
+users = User.all
+user  = users.first
+following = users[1..7]
+followers = users[2..11]
+following.each { |followed| user.friend(followed) }
+followers.each { |follower| follower.friend(user) }
+end
+
+end
+# Microposts
+#users = User.order(:created_at).take(6)
+#50.times do
+  #content = Faker::Lorem.sentence(5)
+#  users.each { |user| user.microposts.create!(content: content) }
+#end
+
+# Following relationships
+
+
+
 seed_players
 seed_player_stats
 seed_leagues
 seed_awards
+seed_users
 seed_picks
+seed_fake_users
+seed_fake_relationships

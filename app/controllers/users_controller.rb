@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
-	before_action :correct_user,   only: [:edit, :update]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy,
+  #adding some logic for friends pages (only need this if mutual friends list is not private?)
+                                         :friends]
+  #adding some logic for friends pages
+	before_action :correct_user,   only: [:edit, :update, :outgoing_friends, :incoming_friends, :friends]
 	before_action :admin_user,     only: :destroy
 
 	def index
@@ -24,9 +27,11 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
     #Line below might not work/might be weird???
     #redirect_to root_url and return unless User.where(activated: true)
-		if !(is_admin? || current_user == @user)
-			flash[:danger] = "Access restricted"
-			redirect_to root_path
+
+    #disabling private profile for iteration 2 (Bryce)
+    #if !(is_admin? || current_user == @user)
+			#flash[:danger] = "Access restricted"
+			#redirect_to root_path
 		end
 
 	end
@@ -60,6 +65,27 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def outgoing_friends
+    @title  = "Outgoing Friends"
+    @user   = User.find(params[:id])
+    @users  = @user.following.paginate(page: params[:page])
+    render 'show_friends'
+  end
+
+  def incoming_friends
+    @title  = "Incoming Friends"
+    @user   = User.find(params[:id])
+    @users  = @user.followers.paginate(page: params[:page])
+    render 'show_friends'
+  end
+
+  def friends
+    @title  = "Friends"
+    @user   = User.find(params[:id])
+    @users = @user.following.paginate(page: params[:page]) & @user.followers.paginate(page: params[:page])
+    render 'show_mutualfriends'
   end
 
 	private
