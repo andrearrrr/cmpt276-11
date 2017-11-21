@@ -159,13 +159,6 @@ def seed_fake_users
 
 end
 
-def seed_fake_relationships
-users = User.all
-user  = users.first
-following = users[1..7]
-followers = users[2..11]
-following.each { |followed| user.friend(followed) }
-followers.each { |follower| follower.friend(user) }
 end
 
 def seed_fake_posts
@@ -173,9 +166,9 @@ users = User.order(:created_at).take(6)
 50.times do
   content = Faker::Lorem.sentence(5)
   users.each { |user| user.posts.create!(content: content) }
+	end
 end
 
-end
 
 
 
@@ -188,5 +181,3 @@ seed_picks
 seed_fake_posts
 #seed_fake_users
 #seed_fake_relationships
-
-end
