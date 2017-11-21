@@ -32,6 +32,9 @@ class User < ApplicationRecord
   end
 
   attr_accessor :remember_token, :activation_token, :reset_token
+
+  has_many :posts, dependent: :destroy
+
   #callback: make the email lowercase before saving to DB so that we can enforce the
   #uniqueness of emails (DB thinks different cases are different emails)
   before_save   :downcase_email
