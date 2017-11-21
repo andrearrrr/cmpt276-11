@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     #if !(is_admin? || current_user == @user)
 			#flash[:danger] = "Access restricted"
 			#redirect_to root_path
-		end
+		#end
 
 	end
 
@@ -115,5 +115,5 @@ class UsersController < ApplicationController
 	def admin_user
 		redirect_to(root_url) unless current_user.admin?
 	end
-
+  
 end

@@ -19,12 +19,7 @@ def seed_users
 		name: "Admin User",
 		email: "admin@test.com",
 		password: "cmpt276",
-<<<<<<< HEAD
 		activated: 1,
-=======
-		activated: true,
-		admin: true,
->>>>>>> friends
 		activated_at: Time.zone.now)
 end
 
@@ -191,5 +186,5 @@ seed_leagues
 seed_awards
 seed_users
 seed_picks
-seed_fake_users
-seed_fake_relationships
+#seed_fake_users
+#seed_fake_relationships
