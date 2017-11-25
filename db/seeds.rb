@@ -34,75 +34,57 @@ def read_json(fname)
 	return data = JSON.parse(file)
 end
 
-'''
-create_table "players", force: :cascade do |t|
-	t.string "name"
-	t.string "identifier"
-	t.string "position"
-	t.datetime "created_at", null: false
-	t.datetime "updated_at", null: false
-	t.integer "PERSON_ID"
-	t.string "DISPLAY_LAST_COMMA_FIRST"
-	t.string "DISPLAY_FIRST_LAST"
-	t.string "FROM_YEAR"
-	t.string "TO_YEAR"
-	t.string "PLAYERCODE"
-	t.integer "TEAM_ID"
-	t.string "TEAM_CITY"
-	t.string "TEAM_NAME"
-	t.string "TEAM_ABBREVIATION"
-	t.string "TEAM_CODE"
-end
-'''
-#[203518,"Abrines, Alex","Alex Abrines",1,"2016","2017","alex_abrines",1610612760,"Oklahoma City","Thunder","OKC","thunder","Y"]
+def seed_player(data)
+	'''
+	Source: http://stats.nba.com/stats/commonallplayers?LeagueID=00&Season=2017-18&IsOnlyCurrentSeason=1
+	headers:["PERSON_ID","DISPLAY_LAST_COMMA_FIRST","DISPLAY_FIRST_LAST","ROSTERSTATUS","FROM_YEAR","TO_YEAR","PLAYERCODE","TEAM_ID","TEAM_CITY","TEAM_NAME","TEAM_ABBREVIATION","TEAM_CODE","GAMES_PLAYED_FLAG"]
 
-def seed_players
-	fname = 'players.json'
-	data = read_json(fname)
-	resultSet = data['resultSets'][0]
-	rowSet = resultSet['rowSet']
+	Source: http://stats.nba.com/stats/leaguedashplayerbiostats?LeagueID=00&PerMode=PerGame&Season=2017-18&SeasonType=Regular%20Season
+	headers:["PLAYER_ID","PLAYER_NAME","TEAM_ID","TEAM_ABBREVIATION","AGE","PLAYER_HEIGHT","PLAYER_HEIGHT_INCHES","PLAYER_WEIGHT","COLLEGE","COUNTRY","DRAFT_YEAR","DRAFT_ROUND","DRAFT_NUMBER","GP","PTS","REB","AST","NET_RATING","OREB_PCT","DREB_PCT","USG_PCT","TS_PCT","AST_PCT"]
+	'''
+	# get the identifier for each player
+	if data.key?("PERSON_ID")
+		p_id = data["PERSON_ID"]
+	else
+		p_id = data["PLAYER_ID"]
+	end
 
-	rowSet.take(10).each do |row|
-		person_id = row[0]
-		if !Player.where(:PERSON_ID => person_id).exists?
-			p = Player.new
-			p.PERSON_ID = person_id
-			p.DISPLAY_LAST_COMMA_FIRST = row[1]
-			p.DISPLAY_FIRST_LAST = row[2]
-			p.FROM_YEAR = row[4]
-			p.TO_YEAR = row[5]
-			p.PLAYERCODE = row[6]
-			p.TEAM_ID = row[7]
-			p.TEAM_CITY = row[8]
-			p.TEAM_NAME = row[9]
-			p.TEAM_ABBREVIATION = row[10]
-			p.TEAM_CODE = row[11]
-			puts p.to_json
-			print p.save!
+	# returns player if exists, otherwise nil
+	p = Player.find_by("PERSON_ID" => p_id)
+	if !p
+		puts "PLAYER DOES NOT EXIST. CREATING PLAYER #{p_id}"
+		p = Player.new
+	else
+		puts "UPDATING PLAYER #{p_id}"
+	end
+
+	# update attributes
+	data.each do |key, value|
+		if Player.column_names.include? key
+			p[key] = value
 		end
+	p.save!
 	end
 end
 
-# def seed_players
-# 	csv = read_csv
-# 	csv.each do |row|
-# 		identifier = row['Identifier']
-# 		name = row['Player']
-# 		position = row['Pos']
-# 		puts identifier
-# 		if !Player.where(:identifier => identifier).exists?
-# 			puts name, identifier
-# 			p = Player.new
-# 			p.name = name
-# 			p.identifier = identifier
-# 			p.position = position
-# 			puts p.to_json
-# 			p.save
-# 			print p.save
-# 		end
-# 	end
-# end
+def seed_players
+	files = ['players.json', 'playerbiodata.json']
 
+	# load each file
+	files.each do |fname|
+		puts "LOOPING THROUGH FILE: #{fname}"
+		data = read_json(fname)
+		resultSet = data['resultSets'][0]
+		rowSet = resultSet['rowSet']
+		headers = resultSet['headers']
+
+		# loop through every player and create/update
+		rowSet.each do |row|
+			data = Hash[headers.zip(row)]
+			seed_player(data)
+		end
+	end
+end
 
 def seed_player_stats
 	csv = read_csv
@@ -225,14 +207,12 @@ users = User.order(:created_at).take(6)
 end
 
 
-
-
 seed_players
 # seed_player_stats
-# seed_leagues
-# seed_awards
-# seed_users
-# seed_picks
-# seed_fake_posts
+seed_leagues
+seed_awards
+seed_users
+seed_picks
+seed_fake_posts
 #seed_fake_users
 #seed_fake_relationships
