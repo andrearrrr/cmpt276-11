@@ -31,14 +31,57 @@ end
 
 def read_json
 	fname = 'players.json'
-	file = File.read(fname)
+	file = File.read(Rails.root.join('lib', 'seeds', fname))
 	return data = JSON.parse(file)
 end
 
+'''
+create_table "players", force: :cascade do |t|
+	t.string "name"
+	t.string "identifier"
+	t.string "position"
+	t.datetime "created_at", null: false
+	t.datetime "updated_at", null: false
+	t.integer "PERSON_ID"
+	t.string "DISPLAY_LAST_COMMA_FIRST"
+	t.string "DISPLAY_FIRST_LAST"
+	t.string "FROM_YEAR"
+	t.string "TO_YEAR"
+	t.string "PLAYERCODE"
+	t.integer "TEAM_ID"
+	t.string "TEAM_CITY"
+	t.string "TEAM_NAME"
+	t.string "TEAM_ABBREVIATION"
+	t.string "TEAM_CODE"
+end
+'''
+#[203518,"Abrines, Alex","Alex Abrines",1,"2016","2017","alex_abrines",1610612760,"Oklahoma City","Thunder","OKC","thunder","Y"]
 
 def seed_players
 	data = read_json
+	resultSet = data['resultSets'][0]
+	rowSet = resultSet['rowSet']
 
+	rowSet.take(10).each do |row|
+		person_id = row[0]
+		if !Player.where(:PERSON_ID => person_id).exists?
+			p = Player.new
+			p.PERSON_ID = person_id
+			p.DISPLAY_LAST_COMMA_FIRST = row[1]
+			p.DISPLAY_FIRST_LAST = row[2]
+			p.FROM_YEAR = row[4]
+			p.TO_YEAR = row[5]
+			p.PLAYERCODE = row[6]
+			p.TEAM_ID = row[7]
+			p.TEAM_CITY = row[8]
+			p.TEAM_NAME = row[9]
+			p.TEAM_ABBREVIATION = row[10]
+			p.TEAM_CODE = row[11]
+			puts p.to_json
+			print p.save!
+
+		end
+	end
 end
 
 # def seed_players
