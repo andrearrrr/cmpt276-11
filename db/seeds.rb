@@ -1,4 +1,5 @@
-require 'csv'
+#require 'csv'
+require 'json'
 
 def seed_users
 	User.create(
@@ -28,25 +29,37 @@ def read_csv
 	return CSV.parse(csv_text, :headers => true, :encoding => 'utf-8')
 end
 
-def seed_players
-	csv = read_csv
-	csv.each do |row|
-		identifier = row['Identifier']
-		name = row['Player']
-		position = row['Pos']
-		puts identifier
-		if !Player.where(:identifier => identifier).exists?
-			puts name, identifier
-			p = Player.new
-			p.name = name
-			p.identifier = identifier
-			p.position = position
-			puts p.to_json
-			p.save
-			print p.save
-		end
-	end
+def read_json
+	fname = 'players.json'
+	file = File.read(fname)
+	return data = JSON.parse(file)
 end
+
+
+def seed_players
+	data = read_json
+
+end
+
+# def seed_players
+# 	csv = read_csv
+# 	csv.each do |row|
+# 		identifier = row['Identifier']
+# 		name = row['Player']
+# 		position = row['Pos']
+# 		puts identifier
+# 		if !Player.where(:identifier => identifier).exists?
+# 			puts name, identifier
+# 			p = Player.new
+# 			p.name = name
+# 			p.identifier = identifier
+# 			p.position = position
+# 			puts p.to_json
+# 			p.save
+# 			print p.save
+# 		end
+# 	end
+# end
 
 
 def seed_player_stats
@@ -173,11 +186,11 @@ end
 
 
 seed_players
-seed_player_stats
-seed_leagues
-seed_awards
-seed_users
-seed_picks
-seed_fake_posts
+# seed_player_stats
+# seed_leagues
+# seed_awards
+# seed_users
+# seed_picks
+# seed_fake_posts
 #seed_fake_users
 #seed_fake_relationships
