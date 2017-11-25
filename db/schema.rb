@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171120025431) do
+ActiveRecord::Schema.define(version: 20171125003318) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,16 +28,6 @@ ActiveRecord::Schema.define(version: 20171120025431) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "microposts", force: :cascade do |t|
-    t.text "content"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "picture"
-    t.index ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
-    t.index ["user_id"], name: "index_microposts_on_user_id"
   end
 
   create_table "picks", force: :cascade do |t|
@@ -94,6 +84,17 @@ ActiveRecord::Schema.define(version: 20171120025431) do
     t.string "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "PERSON_ID"
+    t.string "DISPLAY_LAST_COMMA_FIRST"
+    t.string "DISPLAY_FIRST_LAST"
+    t.string "FROM_YEAR"
+    t.string "TO_YEAR"
+    t.string "PLAYERCODE"
+    t.integer "TEAM_ID"
+    t.string "TEAM_CITY"
+    t.string "TEAM_NAME"
+    t.string "TEAM_ABBREVIATION"
+    t.string "TEAM_CODE"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -121,7 +122,7 @@ ActiveRecord::Schema.define(version: 20171120025431) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
-    t.boolean "admin", default: false
+    t.boolean "admin"
     t.string "remember_digest"
     t.string "activation_digest"
     t.boolean "activated", default: false
@@ -131,6 +132,5 @@ ActiveRecord::Schema.define(version: 20171120025431) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "microposts", "users"
   add_foreign_key "posts", "users"
 end

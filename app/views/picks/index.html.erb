@@ -2,7 +2,7 @@
 
 	<h1><%= link_to "Make a Pick!", new_pick_path %> </h1>
 	<h2> Public Picks </h2>
-
+	<p> <%= @test %>
 	<% @awards.each do |award| %>
 		<h3> <%= award.full_name %> </h3>
 		<div class="table-responsive">
