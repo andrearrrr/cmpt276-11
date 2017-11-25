@@ -29,8 +29,7 @@ def read_csv
 	return CSV.parse(csv_text, :headers => true, :encoding => 'utf-8')
 end
 
-def read_json
-	fname = 'players.json'
+def read_json(fname)
 	file = File.read(Rails.root.join('lib', 'seeds', fname))
 	return data = JSON.parse(file)
 end
@@ -58,7 +57,8 @@ end
 #[203518,"Abrines, Alex","Alex Abrines",1,"2016","2017","alex_abrines",1610612760,"Oklahoma City","Thunder","OKC","thunder","Y"]
 
 def seed_players
-	data = read_json
+	fname = 'players.json'
+	data = read_json(fname)
 	resultSet = data['resultSets'][0]
 	rowSet = resultSet['rowSet']
 
@@ -79,7 +79,6 @@ def seed_players
 			p.TEAM_CODE = row[11]
 			puts p.to_json
 			print p.save!
-
 		end
 	end
 end
