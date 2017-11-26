@@ -40,6 +40,8 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 # Adding a socia share button
 gem 'social-share-button', '~> 0.1.6'
+
+gem 'omniauth-twitter'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
