@@ -6,4 +6,9 @@
 <% if @pick.user == current_user || is_admin? %>
 	<p> <%= link_to "Edit", edit_pick_path(@pick) %> </p>
 	<p> <%= link_to "Delete", pick_path(@pick), data: { confirm: 'Are you sure?' }, :method => :delete %> </p>
+	<%= if @pick.is_private then
+	else
+	 social_share_button_tag("Made a new pick of which player I think will win a NBA Award in this website", :url => "http:localhost:3000") 
+	 end %>
+
 <% end %>
