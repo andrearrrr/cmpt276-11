@@ -16,7 +16,7 @@
 							<% current_user.picks.each do |pick| %>
 									<tr>
 										<td> <%= pick.award.name %> </td>
-										<td> <%= link_to pick.player.name, player_path(pick.player) %> </td>
+										<td> <%= link_to pick.player.DISPLAY_FIRST_LAST, player_path(pick.player) %> </td>
 										<td> <%= pick.created_at.strftime("%Y-%m-%d") %> </td>
 										<td> <%= if pick.is_private then "Private" else "Public" end %> </td>
 										<td> <%= link_to "View Pick", pick_path(pick) %></td>
