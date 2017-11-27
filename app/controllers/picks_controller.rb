@@ -18,6 +18,7 @@ class PicksController < ApplicationController
   def new
     @pick = Pick.new
     @players = Player.all
+    @teams = Team.all
   end
 
   def create
