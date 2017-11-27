@@ -1,6 +1,7 @@
 class Player < ApplicationRecord
 	has_many :player_stats
 	has_many :picks
+	belongs_to :team, foreign_key: 'TEAM_ID', optional: true
 	# validates :identifier, uniqueness: { case_sensitive: false }, presence: true
 	# validates :name,  presence: true
 
