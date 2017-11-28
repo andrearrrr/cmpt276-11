@@ -2,8 +2,21 @@ class PicksController < ApplicationController
   def index
     @picks = Pick.all
     @awards = Award.all
-    @data = read_json('stats.json')
-    @stats = @data['resultSets'][0]['rowSet']
+    data = read_json('stats.json')
+    stats = data['resultSets'][0]['rowSet']
+
+    headers = data['resultSets'][0]['headers']
+    #["PLAYER_ID","PLAYER_NAME","TEAM_ID","TEAM_ABBREVIATION","AGE","PLAYER_HEIGHT","PLAYER_HEIGHT_INCHES","PLAYER_WEIGHT","COLLEGE","COUNTRY","DRAFT_YEAR","DRAFT_ROUND","DRAFT_NUMBER","GP","PTS","REB","AST","NET_RATING","OREB_PCT","DREB_PCT","USG_PCT","TS_PCT","AST_PCT"]
+    data.each do |row|
+      p_dict = Hash[headers.zip(row)]
+      p_id = p_dict["PLAYER_ID"]
+      player = Player.find_by(PERSON_ID: p_id)
+      if player
+
+      end
+
+    end
+
   end
 
   def show

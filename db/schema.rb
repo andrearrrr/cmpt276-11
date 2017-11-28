@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171128132056) do
+ActiveRecord::Schema.define(version: 20171128133446) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,6 +109,7 @@ ActiveRecord::Schema.define(version: 20171128132056) do
     t.float "NET_RATING"
     t.float "TS_PCT"
     t.float "USG_PCT"
+    t.integer "GP"
   end
 
   create_table "posts", force: :cascade do |t|
