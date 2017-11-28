@@ -1,4 +1,6 @@
-<%= @stats %>
+<% @players.take(25).each do |player| %>
+<p><%= player.DISPLAY_FIRST_LAST %>, <%= player.player_rating %>, <%= player.PTS %></p>
+<% end %>
 <% if logged_in? %>
 
 	<h1><%= link_to "Make a Pick!", new_pick_path %> </h1>

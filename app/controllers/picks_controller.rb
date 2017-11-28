@@ -1,21 +1,9 @@
 class PicksController < ApplicationController
   def index
+    update_players()
     @picks = Pick.all
     @awards = Award.all
-    data = read_json('stats.json')
-    stats = data['resultSets'][0]['rowSet']
-
-    headers = data['resultSets'][0]['headers']
-    #["PLAYER_ID","PLAYER_NAME","TEAM_ID","TEAM_ABBREVIATION","AGE","PLAYER_HEIGHT","PLAYER_HEIGHT_INCHES","PLAYER_WEIGHT","COLLEGE","COUNTRY","DRAFT_YEAR","DRAFT_ROUND","DRAFT_NUMBER","GP","PTS","REB","AST","NET_RATING","OREB_PCT","DREB_PCT","USG_PCT","TS_PCT","AST_PCT"]
-    data.each do |row|
-      p_dict = Hash[headers.zip(row)]
-      p_id = p_dict["PLAYER_ID"]
-      player = Player.find_by(PERSON_ID: p_id)
-      if player
-
-      end
-
-    end
+    @players = Player.all
 
   end
 
@@ -89,6 +77,35 @@ class PicksController < ApplicationController
   def read_json(fname)
   	file = File.read(Rails.root.join('lib', 'seeds', fname))
   	return data = JSON.parse(file)
+  end
+
+  def update_players
+    data = read_json('stats.json')
+    stats = data['resultSets'][0]['rowSet']
+    headers = data['resultSets'][0]['headers']
+    stat_cols = ["GP","PTS","REB","AST","NET_RATING","USG_PCT","TS_PCT"]
+    #["PLAYER_ID","PLAYER_NAME","TEAM_ID","TEAM_ABBREVIATION","AGE","PLAYER_HEIGHT","PLAYER_HEIGHT_INCHES","PLAYER_WEIGHT","COLLEGE","COUNTRY","DRAFT_YEAR","DRAFT_ROUND","DRAFT_NUMBER","GP","PTS","REB","AST","NET_RATING","OREB_PCT","DREB_PCT","USG_PCT","TS_PCT","AST_PCT"]
+    # loop through every player in the data set
+
+    stats.each do |row|
+      # create a hash with the player's data
+      p_dict = Hash[headers.zip(row)]
+
+      # get the player from the DB (returns nil if DNE)
+      player = Player.find_by(PERSON_ID: p_dict["PLAYER_ID"])
+      # if player exists, update stats
+      if player
+        puts player.DISPLAY_FIRST_LAST
+        # update each of the stat columns
+        stat_cols.each do |stat|
+          player[stat] = p_dict[stat]
+        end
+        player.save!
+      else
+        puts p_dict["PLAYER_ID"] + " not found"
+      end
+
+    end
   end
 
 end
