@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+<h1> Groups </h1>
+
+<% provide(:title, 'Groups') %>
+
+
+<ul class="groups">
+  <%= @groups.each do |t| %>
+  <% t.name %>
+  <% end %>
+</ul>

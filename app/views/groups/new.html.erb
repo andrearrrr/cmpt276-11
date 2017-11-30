@@ -1,0 +1,8 @@
+<h1>Create a Group</h1>
+
+<%= form_for(:group, url: groups_path) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name, class: 'form-control' %>
+
+  <%= f.submit "Submit", class: "btn btn-primary" %>
+<% end %>

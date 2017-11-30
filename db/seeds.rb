@@ -21,6 +21,14 @@ def seed_users
 		password: "cmpt276",
 		activated: 1,
 		activated_at: Time.zone.now)
+
+#Seeding some groups
+	Group.create(
+		name: "Test_name"
+	)
+	Group.create(
+		name: "Test_name2"
+	)
 end
 
 def read_csv
