@@ -4,13 +4,12 @@ class GroupsController < ApplicationController
   end
 
   def new
-    @group = Group.new
+    @group = Group.new(params[:name])
   end
 
   def create
     @group = Group.new(params[:name])
     redirect_to root_url
   end
-
 
 end
