@@ -3,6 +3,9 @@ class ApplicationController < ActionController::Base
 
   include SessionsHelper
   include PicksHelper
+
+  @awards_updated_at = nil
+
   private
 
   #Confirms an user is logged in

@@ -1,10 +1,10 @@
 class PicksController < ApplicationController
   def index
-    update_players()
-    @picks = Pick.all
     @awards = Award.all
-    #@players = Player.all
-    @players = Player.all.to_a.sort_by(&:mvp_rating).reverse
+    @players = Player.all
+    @rookies = Player.where(DRAFT_YEAR: "2017")
+    @mvp = Award.includes(:picks => [:player, :user]).where(name: "MVP") .order("player.mvp_rank asc")
+    @player_count = Player.count
 
   end
 
@@ -61,8 +61,9 @@ class PicksController < ApplicationController
 
   def update_awards
     url = "http://stats.nba.com/stats/leaguedashplayerbiostats?LeagueID=00&PerMode=PerGame&Season=2017-18&SeasonType=Regular%20Season"
-    #data = parse_stats(url)
-    @data = read_json('stats.json')
+    data = parse_stats(url)
+    update_players(JSON.parse(data))
+    redirect_to picks_path, :notice => "Awards and stats updated."
   end
 
   private
@@ -81,8 +82,7 @@ class PicksController < ApplicationController
   	return data = JSON.parse(file)
   end
 
-  def update_players
-    data = read_json('stats.json')
+  def update_players(data)
     stats = data['resultSets'][0]['rowSet']
     headers = data['resultSets'][0]['headers']
     stat_cols = ["GP","PTS","REB","AST","NET_RATING","USG_PCT","TS_PCT"]

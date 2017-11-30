@@ -1,29 +1,72 @@
-<div class="table-responsive">
-<table class="table table-hover table-condensed col-md-3">
-		<thead>
-				<tr>
-						<th>Player</th>
-						<th>MVP Rating1</th>
-						<th>MVP Rank1</th>
-				</tr>
-		</thead>
-		<tbody>
-					<% @players.take(25).each do |player| %>
-							<tr>
-								<td><%= link_to player.DISPLAY_FIRST_LAST, player_path(player) %></td>
-								<td>  <%= player.mvp_rating %> </td>
-								<td>  <%= player.mvp_rank %> </td>
-							</tr>
-					<% end %>
-		</tbody>
-</table>
-</div>
-
 <% if logged_in? %>
+	<%= link_to "Make a Pick!", new_pick_path, class:"btn btn-primary btn-lg text-centre"%>
 
-	<h1><%= link_to "Make a Pick!", new_pick_path %> </h1>
-	<h2> Public Picks </h2>
-	<p> <%= @test %>
+	<h1> Award Leaders </h1>
+	<h2><%= link_to "Update Awards", update_awards_path%> (last updated at: <%= @awards_updated_at %>)</h2>
+	<h3> MVP - Most Valuable Player Rankings </h3>
+	<div class="table-responsive">
+	<table class="table table-hover table-condensed col-md-3">
+			<thead>
+					<tr>
+							<th>Rank</th>
+							<th>Player</th>
+							<th>Team</th>
+							<th>Points</th>
+							<th>Rebounds</th>
+							<th>Assists</th>
+							<th>MVP Rating</th>
+					</tr>
+			</thead>
+			<tbody>
+						<% @players.to_a.sort_by(&:mvp_rating).reverse.take(5).each do |player| %>
+								<tr>
+									<td>  <%= player.mvp_rank %> </td>
+									<td><%= link_to player.DISPLAY_FIRST_LAST, player_path(player) %></td>
+									<td>  <%= player.TEAM_ABBREVIATION %> </td>
+									<td>  <%= player.PTS %> </td>
+									<td>  <%= player.REB %> </td>
+									<td>  <%= player.AST %> </td>
+									<td> <strong> <%= player.mvp_rating %></strong> </td>
+
+
+								</tr>
+						<% end %>
+			</tbody>
+	</table>
+	</div>
+
+	<h3> ROY - Rookie of the Year Rankings </h3>
+	<div class="table-responsive">
+	<table class="table table-hover table-condensed col-md-3">
+			<thead>
+					<tr>
+						<th>Rank</th>
+							<th>Player</th>
+							<th>Team</th>
+							<th>Points</th>
+							<th>Rebounds</th>
+							<th>Assists</th>
+							<th>ROY Rating</th>
+					</tr>
+			</thead>
+			<tbody>
+						<% @rookies.to_a.sort_by(&:mvp_rating).reverse.take(5).each do |player| %>
+								<tr>
+									<td>  <%= player.rookie_rank %> </td>
+									<td><%= link_to player.DISPLAY_FIRST_LAST, player_path(player) %></td>
+									<td>  <%= player.TEAM_ABBREVIATION %> </td>
+									<td>  <%= player.PTS %> </td>
+									<td>  <%= player.REB %> </td>
+									<td>  <%= player.AST %> </td>
+									<td> <strong> <%= player.mvp_rating %></strong> </td>
+
+
+								</tr>
+						<% end %>
+			</tbody>
+	</table>
+	</div>
+
 	<% @awards.each do |award| %>
 		<h3> <%= award.full_name %> </h3>
 		<div class="table-responsive">
