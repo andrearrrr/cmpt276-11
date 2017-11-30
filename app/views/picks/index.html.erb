@@ -1,8 +1,9 @@
 <% if logged_in? %>
+<div class="text-center">
 	<%= link_to "Make a Pick!", new_pick_path, class:"btn btn-primary btn-lg text-centre"%>
-
+</div>
 	<h1> Award Leaders </h1>
-	<h2><%= link_to "Update Awards", update_awards_path%> (last updated at: <%= @awards_updated_at %>)</h2>
+	<h2><%= link_to "Update Award Rankings", update_awards_path%> (last updated at: <%= @awards_updated_at %>)</h2>
 	<h3> MVP - Most Valuable Player Rankings </h3>
 	<div class="table-responsive">
 	<table class="table table-hover table-condensed col-md-3">
@@ -27,6 +28,7 @@
 									<td>  <%= player.REB %> </td>
 									<td>  <%= player.AST %> </td>
 									<td> <strong> <%= player.mvp_rating %></strong> </td>
+									<td>  <%= player.updated_at %> </td>
 
 
 								</tr>
@@ -59,6 +61,7 @@
 									<td>  <%= player.REB %> </td>
 									<td>  <%= player.AST %> </td>
 									<td> <strong> <%= player.mvp_rating %></strong> </td>
+									<td>  <%= player.updated_at %> </td>
 
 
 								</tr>

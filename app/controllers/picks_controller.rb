@@ -3,7 +3,7 @@ class PicksController < ApplicationController
     @awards = Award.all
     @players = Player.all
     @rookies = Player.where(DRAFT_YEAR: "2017")
-    @mvp = Award.includes(:picks => [:player, :user]).where(name: "MVP") .order("player.mvp_rank asc")
+    @mvp = Award.includes(:picks => [:player, :user]).where(name: "MVP").order("player.mvp_rank asc")
     @player_count = Player.count
 
   end
@@ -94,11 +94,14 @@ class PicksController < ApplicationController
       player = Player.find_by(PERSON_ID: p_dict["PLAYER_ID"])
       # if player exists, update stats
       if player
+        puts "PLAYER EXISTs"
         # update each of the stat columns
         stat_cols.each do |stat|
           player[stat] = p_dict[stat]
         end
-        player.save!
+        puts player.to_json
+      else
+        puts "DNE"
       end
     end
   end

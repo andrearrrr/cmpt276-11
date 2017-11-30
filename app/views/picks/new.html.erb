@@ -1,21 +1,4 @@
 <h1>Make a Pick</h1>
-<div class="dropdown" style="position:relative">
-	<a href="#" class="btn btn-primary dropdown-toggle" data-background-color="#990000" data-toggle="dropdown">Click Here <span class="caret"></span></a>
-	<ul class="dropdown-menu">
-		<% @teams.each do |team| %>
-		<li>
-			<a class="trigger right-caret"><%= team %> </a>
-			<ul class="dropdown-menu sub-menu">
-				<% team.players.each do |player| %>
-				<li><a href="#"><%= player %> </a></li>
-				<% end %>
-			</ul>
-		</li>
-		<li><a href="#">Level 1</a></li>
-		<li><a href="#">Level 1</a></li>
-		<% end %>
-	</ul>
-</div>
 
 <% if logged_in? %>
 	<% if current_user.picks.count > 0 %>
