@@ -1,6 +1,24 @@
-<% @players.take(25).each do |player| %>
-<p><%= player.DISPLAY_FIRST_LAST %>, <%= player.player_rating %>, <%= player.PTS %></p>
-<% end %>
+<div class="table-responsive">
+<table class="table table-hover table-condensed col-md-3">
+		<thead>
+				<tr>
+						<th>Player</th>
+						<th>MVP Rating1</th>
+						<th>MVP Rank1</th>
+				</tr>
+		</thead>
+		<tbody>
+					<% @players.take(25).each do |player| %>
+							<tr>
+								<td><%= link_to player.DISPLAY_FIRST_LAST, player_path(player) %></td>
+								<td>  <%= player.mvp_rating %> </td>
+								<td>  <%= player.mvp_rank %> </td>
+							</tr>
+					<% end %>
+		</tbody>
+</table>
+</div>
+
 <% if logged_in? %>
 
 	<h1><%= link_to "Make a Pick!", new_pick_path %> </h1>
