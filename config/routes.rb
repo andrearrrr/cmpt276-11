@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   resources :password_resets,    only: [:new, :create, :edit, :update]
   get '/posts/:id', to: 'posts#index', as: 'post'
   resources :posts, only: [:create, :destroy]
+  resources :groups
 
   root 'static_pages#home'
 
