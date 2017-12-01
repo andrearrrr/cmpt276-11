@@ -8,15 +8,19 @@ class GroupsController < ApplicationController
     @group = Group.new(params[:group])
   end
 
+  def edit
+    @group = Group.find(params[:id])
+  end
+
   def create
     @group = Group.new(group_params)
+    @group.users << current_user
     if @group.save
       flash[:info] = "Group Created!"
       redirect_to @group
     else
       render 'new'
     end
-
   end
 
   def show
