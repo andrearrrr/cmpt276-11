@@ -12,10 +12,9 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
     if @group.save
       flash[:info] = "Group Created!"
-      redirect_to group_path(@group.id)
+      redirect_to @group
     else
-      flash[:info] = "Not Saved?"
-      redirect_to root_url
+      render 'new'
     end
 
   end

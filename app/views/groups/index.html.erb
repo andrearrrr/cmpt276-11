@@ -2,10 +2,15 @@
 <p id="notice"><%= notice %></p>
 <h1> Groups </h1>
 
-<ul class="users">
+<h2> There are <%= @groups.count %> groups. </h2>
+
+
+  <ul class="users">
   <% @groups.each do |t| %>
   <li>
     <%= link_to t.name, group_path(t) %>
   </li>
   <% end %>
-</ul>
+  </ul>
+
+  <%= will_paginate %>
