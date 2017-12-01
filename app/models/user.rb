@@ -12,8 +12,8 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
 
   #setting up relationship for groups
-  has_many :memberships
-  has_many :groups, :through => :memberships
+  has_many :memberships, dependent: :destroy
+  has_many :groups, through: :memberships
 
   ##functions for friendships##
   #friends other_user (1 direction)
