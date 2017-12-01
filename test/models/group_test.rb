@@ -19,4 +19,10 @@ class GroupTest < ActiveSupport::TestCase
     @group.name = "a" * 101
     assert_not @group.valid?
   end
+
+  test "name shoud be unique" do
+    copy = @group.dup
+    @group.save
+    assert_not copy.valid?
+  end
 end
