@@ -1,10 +1,11 @@
 class GroupsController < ApplicationController
+
   def index
     @groups = Group.all
   end
 
   def new
-    @group = Group.new(params[:name])
+    @group = Group.new
   end
 
   def create
@@ -12,4 +13,7 @@ class GroupsController < ApplicationController
     redirect_to root_url
   end
 
+  def show
+    @group = Group.find(params[:id])
+  end
 end

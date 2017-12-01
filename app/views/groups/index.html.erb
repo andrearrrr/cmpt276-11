@@ -1,11 +1,11 @@
+<% provide(:title, 'Groups') %>
 <p id="notice"><%= notice %></p>
 <h1> Groups </h1>
 
-<% provide(:title, 'Groups') %>
-
-
 <ul class="groups">
-  <%= @groups.each do |t| %>
-  <% t.name %>
+  <% @groups.each do |t| %>
+  <li>
+    <%= link_to t.name, t.name %>
+  </li>
   <% end %>
 </ul>
