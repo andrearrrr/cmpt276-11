@@ -2,10 +2,10 @@
 <p id="notice"><%= notice %></p>
 <h1> Groups </h1>
 
-<ul class="groups">
+<ul class="users">
   <% @groups.each do |t| %>
   <li>
-    <%= link_to t.name, t.name %>
+    <%= link_to t.name, group_path(t) %>
   </li>
   <% end %>
 </ul>
