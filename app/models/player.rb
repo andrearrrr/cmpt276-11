@@ -8,6 +8,10 @@ class Player < ApplicationRecord
 		"#{name}, #{position} - #{latest_team}"
 	end
 
+	def team_name
+		"#{latest_team}"
+	end
+
 	def latest_team
 		latest_season = 0
 		team = ""

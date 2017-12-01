@@ -21,6 +21,11 @@
     <%= collection_select( :pick, :player_id, Player.all, :id, :name_decorated) %>
   </div>
 
+  <div class="field">
+    <%= f.label "League" %><br>
+    <%= collection_select( :pick, :league_id, Player.all{:latest_team}, :id, :team_name) %>
+  </div>
+
 	<div class="field">
     <%= f.hidden_field :user_id, :value => current_user.id %>
   </div>
