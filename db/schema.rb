@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171127154116) do
+ActiveRecord::Schema.define(version: 20171128133446) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,13 @@ ActiveRecord::Schema.define(version: 20171127154116) do
     t.string "DRAFT_YEAR"
     t.string "DRAFT_ROUND"
     t.string "DRAFT_NUMBER"
+    t.float "PTS"
+    t.float "REB"
+    t.float "AST"
+    t.float "NET_RATING"
+    t.float "TS_PCT"
+    t.float "USG_PCT"
+    t.integer "GP"
   end
 
   create_table "posts", force: :cascade do |t|

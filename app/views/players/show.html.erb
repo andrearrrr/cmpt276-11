@@ -1,8 +1,8 @@
 <h1> <%= @player.DISPLAY_FIRST_LAST %> </h1>
 <ul class="list-inline" align = "center">
-  <li class="list-inline-item"><%= @player.PLAYER_HEIGHT %>, <%= @player.PLAYER_WEIGHT %></li>
-  <li class="list-inline-item">Team: <%= @player.TEAM_CITY + " " + @player.TEAM_NAME %></li>
-  <li class="list-inline-item">College: <%= @player.COLLEGE %></li>
+  <li class="list-inline-item"><strong>Height, Weight:</strong> <%= @player.PLAYER_HEIGHT %>, <%= @player.PLAYER_WEIGHT %></li>
+  <li class="list-inline-item"><strong>Team:</strong> <%= @player.TEAM_CITY + " " + @player.TEAM_NAME %></li>
+  <li class="list-inline-item"><strong>College:</strong> <%= @player.COLLEGE %></li>
 </ul>
 
 <div class="table-responsive">
@@ -26,7 +26,7 @@
         </tr>
     </thead>
     <tbody>
-        <% @stats['resultSets'][0]['rowSet'].reverse.each do |stat| %>
+        <% @stats.reverse.each do |stat| %>
               <tr>
                 <td> <%= stat[1] %></td>
                 <td> <%= stat[4] %> </td>
