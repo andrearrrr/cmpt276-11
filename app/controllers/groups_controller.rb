@@ -25,6 +25,8 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+    @picks = Pick.all
+    @awards = Award.all
   end
 
   def join
