@@ -27,6 +27,11 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
   end
 
+  def join
+    @group = Group.find(params[:id])
+    @m = @group.memberships.build(:user_id)
+  end
+
 private
   def group_params
     params.require(:group).permit(:name)

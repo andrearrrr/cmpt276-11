@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   resources :posts, only: [:create, :destroy]
   resources :groups do
     get 'join', to: :create, controller: 'memberships'
+    get 'leave', to: :destroy, controller: 'memberships'
   end
 
   root 'static_pages#home'
