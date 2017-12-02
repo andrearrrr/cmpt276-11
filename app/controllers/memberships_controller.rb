@@ -1,5 +1,5 @@
 class MembershipsController < ApplicationController
-
+before_action :logged_in_user
 
   def join
     @group = Group.find(params[:group_id])

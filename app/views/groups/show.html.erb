@@ -8,9 +8,9 @@
 </ul>
 
 <%if @group.users.exists?(current_user.id) %>
-  <%= link_to "Leave this Group", group_leave_path(@group) %>
+  <%= button_to "Leave this Group", group_leave_path(@group), :method => :get %>
  <% else %>
-  <%= link_to "Join this group", group_join_path(@group) %>
+  <%= button_to "Join this group", group_join_path(@group), :method => :get %>
 <% end %>
 
 <% @awards.each do |award| %>
