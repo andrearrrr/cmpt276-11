@@ -1,14 +1,17 @@
-<h4> Group: <%= @group.name %> </h4>
-
+<h4> Group Name: <%= @group.name %> </h4>
 <h2> Members </h2>
 <ul class= "users">
 <% @group.users.each do |t| %>
-<li><%= link_to t.name, user_path(t) %> </li>
+<li><%= link_to t.name, user_path(t) %></li>
 <% end %>
 </ul>
 
 <%if @group.users.exists?(current_user.id) %>
+  <% if current_user.id != @group.owner_id %>
   <%= button_to "Leave this Group", group_leave_path(@group), :method => :get %>
+  <% else %>
+  <%= button_to "Delete this group", group_path(@group), data: {confirm: 'Are you sure?' }, :method => :delete %>
+  <% end %>
  <% else %>
   <%= button_to "Join this group", group_join_path(@group), :method => :get %>
 <% end %>
