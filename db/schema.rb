@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171120025431) do
+ActiveRecord::Schema.define(version: 20171127154116) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,16 +28,6 @@ ActiveRecord::Schema.define(version: 20171120025431) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "microposts", force: :cascade do |t|
-    t.text "content"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "picture"
-    t.index ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
-    t.index ["user_id"], name: "index_microposts_on_user_id"
   end
 
   create_table "picks", force: :cascade do |t|
@@ -94,6 +84,25 @@ ActiveRecord::Schema.define(version: 20171120025431) do
     t.string "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "PERSON_ID"
+    t.string "DISPLAY_LAST_COMMA_FIRST"
+    t.string "DISPLAY_FIRST_LAST"
+    t.string "FROM_YEAR"
+    t.string "TO_YEAR"
+    t.string "PLAYERCODE"
+    t.integer "TEAM_ID"
+    t.string "TEAM_CITY"
+    t.string "TEAM_NAME"
+    t.string "TEAM_ABBREVIATION"
+    t.string "TEAM_CODE"
+    t.integer "AGE"
+    t.string "PLAYER_HEIGHT"
+    t.string "PLAYER_WEIGHT"
+    t.string "COLLEGE"
+    t.string "COUNTRY"
+    t.string "DRAFT_YEAR"
+    t.string "DRAFT_ROUND"
+    t.string "DRAFT_NUMBER"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -115,13 +124,24 @@ ActiveRecord::Schema.define(version: 20171120025431) do
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
+  create_table "teams", force: :cascade do |t|
+    t.integer "teamID"
+    t.string "abbreviation"
+    t.string "teamName"
+    t.string "simpleName"
+    t.string "location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "league_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
-    t.boolean "admin", default: false
+    t.boolean "admin"
     t.string "remember_digest"
     t.string "activation_digest"
     t.boolean "activated", default: false
@@ -131,6 +151,5 @@ ActiveRecord::Schema.define(version: 20171120025431) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  add_foreign_key "microposts", "users"
   add_foreign_key "posts", "users"
 end
