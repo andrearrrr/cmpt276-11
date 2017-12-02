@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   resources :password_resets,    only: [:new, :create, :edit, :update]
   get '/posts/:id', to: 'posts#index', as: 'post'
+  get '/posts/friends/:id', to: 'posts#friends', as: 'post_friends'
   resources :posts, only: [:create, :destroy]
 
   root 'static_pages#home'

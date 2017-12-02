@@ -26,10 +26,13 @@ before_action :correct_user,   only: :destroy
 
 	end
 
-	def show
-		@post = current_user.posts.build if logged_in?
+	def friends
+		@user = User.find(params[:id])
+		@posts = @user.posts.paginate(page: params[:page])
+		
 
 	end
+
 
 	private
 
