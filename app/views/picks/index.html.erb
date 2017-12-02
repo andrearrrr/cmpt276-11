@@ -3,7 +3,7 @@
 	<%= link_to "Make a Pick!", new_pick_path, class:"btn btn-primary btn-lg text-centre"%>
 </div>
 	<h1> Award Leaders </h1>
-	<h2><%= link_to "Update Award Rankings", update_awards_path%> (last updated at: <%= @awards_updated_at %>)</h2>
+	<h2><%= link_to "Update Award Rankings", update_awards_path%></h2>
 	<h3> MVP - Most Valuable Player Rankings </h3>
 	<div class="table-responsive">
 	<table class="table table-hover table-condensed col-md-3">
@@ -16,7 +16,9 @@
 							<th>Rebounds</th>
 							<th>Assists</th>
 							<th>MVP Rating</th>
+							<th>Last Updated</th>
 					</tr>
+
 			</thead>
 			<tbody>
 						<% @players.to_a.sort_by(&:mvp_rating).reverse.take(5).each do |player| %>
@@ -29,8 +31,6 @@
 									<td>  <%= player.AST %> </td>
 									<td> <strong> <%= player.mvp_rating %></strong> </td>
 									<td>  <%= player.updated_at %> </td>
-
-
 								</tr>
 						<% end %>
 			</tbody>
@@ -49,6 +49,7 @@
 							<th>Rebounds</th>
 							<th>Assists</th>
 							<th>ROY Rating</th>
+							<th>Last Updated</th>
 					</tr>
 			</thead>
 			<tbody>
@@ -78,6 +79,13 @@
 						<tr>
 								<th>User</th>
 								<th>Player</th>
+								<% if award.name == "MVP" %>
+								<th> MVP Rating </th>
+								<th> MVP Rank (of <%= @players.count %>) </th>
+								<% elsif award.name == "ROY" %>
+								<th> ROY Rating </th>
+								<th> ROY Rank (of <%= @rookies.count %>) </th>
+								<% end %>
 								<th>Created At</th>
 						</tr>
 				</thead>
@@ -87,6 +95,13 @@
 									<tr>
 										<td> <%= pick.user.name %></td>
 										<td> <%= link_to pick.player.DISPLAY_FIRST_LAST, player_path(pick.player) %> </td>
+										<% if award.name == "MVP" %>
+										<td> <%= pick.player.mvp_rating %> </td>
+										<td> <%= pick.player.mvp_rank %> </td>
+										<% elsif award.name == "ROY" %>
+										<td> <%= pick.player.mvp_rating %> </td>
+										<td> <%= pick.player.rookie_rank %>  </td>
+										<% end %>
 										<td> <%= pick.created_at.strftime("%Y-%m-%d") %> </td>
 										<td> <%= link_to "View Pick", pick_path(pick) %></td>
 										<% if is_admin? %>

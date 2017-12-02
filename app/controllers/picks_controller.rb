@@ -1,8 +1,8 @@
 class PicksController < ApplicationController
   def index
-    @awards = Award.all
+    @awards = Award.includes(:picks => [:player, :user]).all
     @players = Player.all
-    @rookies = Player.where(DRAFT_YEAR: "2017")
+    @rookies = Player.where(DRAFT_YEAR: "2017").or(Player.where(DISPLAY_FIRST_LAST: "Ben Simmons"))
     @mvp = Award.includes(:picks => [:player, :user]).where(name: "MVP").order("player.mvp_rank asc")
     @player_count = Player.count
 
