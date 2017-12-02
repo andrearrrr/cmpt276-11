@@ -18,7 +18,7 @@
 
 	<div class="field">
     <%= f.label :player_id %><br>
-    <%= collection_select( :pick, :player_id, Player.all.sort_by(&:DISPLAY_LAST_COMMA_FIRST), :id, :DISPLAY_LAST_COMMA_FIRST) %>
+    <%= grouped_collection_select( :pick, :player_id, Team.all, :players, :teamName, :id, :DISPLAY_LAST_COMMA_FIRST) %>
   </div>
 
 	<div class="field">
