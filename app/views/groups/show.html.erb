@@ -1,5 +1,5 @@
-<h4> Group Name: <%= @group.name %> </h4>
-<h2> Members </h2>
+<h1><%= @group.name %> </h1>
+<h4> Members </h2>
 <ul class= "users">
 <% @group.users.each do |t| %>
 <li><%= link_to t.name, user_path(t) %></li>
@@ -11,11 +11,14 @@
   <%= button_to "Leave this Group", group_leave_path(@group), :method => :get %>
   <% else %>
   <%= button_to "Delete this group", group_path(@group), data: {confirm: 'Are you sure?' }, :method => :delete %>
+  <%= button_to "Edit Group Name", edit_group_path(@group), :method => :get %>
   <% end %>
  <% else %>
   <%= button_to "Join this group", group_join_path(@group), :method => :get %>
 <% end %>
-
+<br>
+<br>
+<h1> Group Member's Picks </h1>
 <% @awards.each do |award| %>
   <h3> <%= award.full_name %> </h3>
   <div class="table-responsive">

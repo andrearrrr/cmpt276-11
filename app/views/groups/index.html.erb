@@ -1,8 +1,11 @@
 <% provide(:title, 'Groups') %>
 <p id="notice"><%= notice %></p>
 <h1> Groups </h1>
-
+<h2> <%= button_to "Create a New Group", new_group_path, :method => :get %></h2>
+<br>
+<br>
 <h2> There are <%= @groups.count %> groups. </h2>
+
 
 
   <ul class="users">
