@@ -4,7 +4,6 @@ class PlayersController < ApplicationController
     @player = Player.find(params[:id])
   end
 
-<<<<<<< HEAD
   private
 
   def parse_stats(p_id)
@@ -13,7 +12,5 @@ class PlayersController < ApplicationController
     resp = RestClient::Request.execute(method: :get, url: url, headers: headers, timeout: nil)
     return JSON.parse(resp)
   end
-=======
->>>>>>> fb72cae436bb2f1f3cadb8e5c82ccc9d2f0fb2e2
 
 end
