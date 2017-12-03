@@ -16,8 +16,6 @@ Rails.application.routes.draw do
   get '/players/test', to: 'players#test'
   get '/players/:id', to: 'players#show', as: "player"
 
-  get '/contacts', to: 'contacts#new'
-
   resources :users do
     member do
       get :outgoing_friends, :incoming_friends, :friends
