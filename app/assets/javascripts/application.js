@@ -16,4 +16,8 @@
 //= require jquery-ui
 //= require jquery.turbolinks
 //= require turbolinks
+
+//= require social-share-button
+
+
 //= require_tree .

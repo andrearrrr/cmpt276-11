@@ -10,7 +10,11 @@
   <%= link_to "Home", root_path %>
 </div>
 <div>
-  <%= link_to "Friends", friends_user_path(@user) %>
+  <%= link_to "Friends", friends_user_path(@user) %><br>
+  <%= if current_user != @user
+    link_to "Posts", post_friends_path(@user)
+    end %>
+
 </div>
 <div>
   <%= if current_user == @user
@@ -53,7 +57,7 @@
         <% @user.picks.each do |pick| %>
           <tr>
             <td> <%= pick.award.full_name %></td>
-            <td> <%= link_to pick.player.name, player_path(pick.player) %> </td>
+            <td> <%= link_to pick.player.DISPLAY_FIRST_LAST, player_path(pick.player) %> </td>
             <td> <%= pick.created_at.strftime("%Y-%m-%d") %> </td>
             <td> <%= link_to "View Pick", pick_path(pick) %></td>
             <td> <%= link_to "Edit", edit_pick_path(pick) %> </td>

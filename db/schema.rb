@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20171201001540) do
     t.index ["user_id"], name: "index_memberships_on_user_id"
   end
 
+
   create_table "picks", force: :cascade do |t|
     t.integer "user_id"
     t.integer "player_id"

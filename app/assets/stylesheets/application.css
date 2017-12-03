@@ -12,5 +12,6 @@
  *
  *= require dataTables/jquery.dataTables
  *= require_tree .
+ *= require social-share-button
  *= require_self
  */
