@@ -102,12 +102,21 @@ def seed_players
 		end
 	end
 
-	files = ['players.json', 'playerbiodata.json']
+	def parse_stats(url)
+		headers = {"Accept-Language": "en-us","User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Safari/604.1.38","Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", 'referer': 'http://stats.nba.com/'}
+		resp = RestClient.get(url, headers = headers )
+		return JSON.parse(resp)
+	end
 
-	# load each file
-	files.each do |fname|
-		puts "LOOPING THROUGH FILE: #{fname}"
-		data = read_json(fname)
+	# files = ['players.json', 'playerbiodata.json']
+	# # load each file
+	# files.each do |fname|
+	# 	puts "LOOPING THROUGH FILE: #{fname}"
+	# 	data = read_json(fname)
+	urls = ['http://stats.nba.com/stats/commonallplayers?LeagueID=00&Season=2017-18&IsOnlyCurrentSeason=1', 'http://stats.nba.com/stats/leaguedashplayerbiostats?LeagueID=00&PerMode=PerGame&Season=2017-18&SeasonType=Regular%20Season']
+
+	urls.each do |url|
+		data = parse_stats(url)
 		resultSet = data['resultSets'][0]
 		rowSet = resultSet['rowSet']
 		headers = resultSet['headers']
@@ -240,13 +249,13 @@ users = User.order(:created_at).take(6)
 	end
 end
 
-seed_leagues
-seed_teams
+# seed_leagues
+# seed_teams
 seed_players
 #seed_player_stats
-seed_awards
-seed_users
-seed_picks
-seed_fake_posts
-seed_fake_users
+# seed_awards
+# seed_users
+# seed_picks
+# seed_fake_posts
+# seed_fake_users
 #seed_fake_relationships
