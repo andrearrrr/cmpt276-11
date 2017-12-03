@@ -15,13 +15,6 @@
     <%= f.label :award_id %><br>
     <%= collection_select( :pick, :award_id, Award.all, :id, :full_name) %>
   </div>
-  
-  <div class="field">
-    <%= f.label :team_id %><br>
-    <%= collection_select( :player, :team_id, Team.all, :id, :teamName) %>
-    <%#= f.select :teamID, Team.all.collect { |p| p.id }, include_blank: true %>
-    <%#= f.select :teamID, Team.all.collect { |p| p.id }, include_blank: true %>
-  </div>
 
 	<div class="field">
     <%= f.label :player_id %><br>
