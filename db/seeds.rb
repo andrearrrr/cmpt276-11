@@ -247,6 +247,6 @@ seed_players
 seed_awards
 seed_users
 seed_picks
-seed_fake_posts
-seed_fake_users
+#seed_fake_posts
+#seed_fake_users
 #seed_fake_relationships
