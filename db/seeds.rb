@@ -102,12 +102,21 @@ def seed_players
 		end
 	end
 
-	files = ['players.json', 'playerbiodata.json']
+	def parse_stats(url)
+		headers = {"Accept-Language": "en-us","User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Safari/604.1.38","Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", 'referer': 'http://stats.nba.com/'}
+		resp = RestClient.get(url, headers = headers )
+		return JSON.parse(resp)
+	end
 
-	# load each file
-	files.each do |fname|
-		puts "LOOPING THROUGH FILE: #{fname}"
-		data = read_json(fname)
+	# files = ['players.json', 'playerbiodata.json']
+	# # load each file
+	# files.each do |fname|
+	# 	puts "LOOPING THROUGH FILE: #{fname}"
+	# 	data = read_json(fname)
+	urls = ['http://stats.nba.com/stats/commonallplayers?LeagueID=00&Season=2017-18&IsOnlyCurrentSeason=1', 'http://stats.nba.com/stats/leaguedashplayerbiostats?LeagueID=00&PerMode=PerGame&Season=2017-18&SeasonType=Regular%20Season']
+
+	urls.each do |url|
+		data = parse_stats(url)
 		resultSet = data['resultSets'][0]
 		rowSet = resultSet['rowSet']
 		headers = resultSet['headers']
@@ -117,49 +126,6 @@ def seed_players
 			data = Hash[headers.zip(row)]
 			seed_player(data)
 		end
-	end
-end
-
-def seed_player_stats
-	csv = read_csv
-	csv.each do |row|
-		identifier = row['Identifier']
-		player = Player.find_by(identifier: identifier)
-
-		p = PlayerStat.new
-		p.player_id = player.id
-		p.season = row["Season"]
-		p.age = row["Age"]
-		p.team = row["Tm"]
-		p.games = row['G']
-		p.games_started = row['GS']
-		p.minutes = row['MP']
-		p.fg = row['FG']
-		p.fga = row['FGA']
-		p.fgpct = row['FG_pct']
-		p.fg3 = row['3P']
-		p.fg3a = row['3PA']
-		p.fg3pct = row['3P_pct']
-		p.efgpct = row['eFG_pct']
-		p.ft = row['FT']
-		p.fta = row['FTA']
-		p.ftpct = row['FT_pct']
-		p.reboff = row['ORB']
-		p.rebdef = row['DRB']
-		p.rebtot = row['TRB']
-		p.assists = row['AST']
-		p.steals = row['STL']
-		p.blocks = row['BLK']
-		p.tovs = row['TOV']
-		p.points = row['Pts']
-		p.per = row['PER']
-		p.tspct = row['TS_pct']
-		p.usage = row['USG_pct']
-		p.obpm = row['OBPM']
-		p.dbpm = row['DBPM']
-		p.bpm = row['BPM']
-		p.vorp = row['VORP']
-		p.save
 	end
 end
 
@@ -243,7 +209,6 @@ end
 seed_leagues
 seed_teams
 seed_players
-#seed_player_stats
 seed_awards
 seed_users
 seed_picks
