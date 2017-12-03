@@ -8,7 +8,7 @@
 	<p> <%= link_to "Edit", edit_pick_path(@pick) %> </p>
 	<p> <%= link_to "Delete", pick_path(@pick), data: { confirm: 'Are you sure?' }, :method => :delete %> </p>	
 	<p> Share your Pick 
-		<%= social_share_button_tag("I predict" + @pick.player.name_decorated + "will in "+ @pick.award.full_name , :url => "https://mysportspicks.herokuapp.com/")  %>
+		<%= social_share_button_tag("I predict " + @pick.player.name_decorated + "  will in "+ @pick.award.full_name , :url => "https://mysportspicks.herokuapp.com/")  %>
 	</li>
 
 <% end %>
