@@ -23,7 +23,9 @@ ActiveRecord::Schema.define(version: 20171128133446) do
     t.string "description"
   end
 
-  create_table "contacts", force: :cascade do |t|
+  create_table "leagues", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
