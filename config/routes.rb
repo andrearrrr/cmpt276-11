@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
   get 'password_reset/new'
-
   get 'password_reset/edit'
+
+  get '/update_awards' => 'picks#update_awards', :as => 'update_awards'
 
   get  '/help',    to: 'static_pages#help'
   get  '/about',   to: 'static_pages#about'
@@ -28,6 +29,10 @@ Rails.application.routes.draw do
   get '/posts/:id', to: 'posts#index', as: 'post'
   resources :posts, only: [:create, :destroy]
   resources :contacts, only: [:new, :create]
+  resources :groups do
+    get 'join', to: :create, controller: 'memberships'
+    get 'leave', to: :destroy, controller: 'memberships'
+  end
 
   root 'static_pages#home'
 

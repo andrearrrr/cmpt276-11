@@ -1,7 +1,11 @@
 class PicksController < ApplicationController
   def index
-    @picks = Pick.all
-    @awards = Award.all
+    @awards = Award.includes(:picks => [:player, :user]).all
+    @players = Player.all
+    @rookies = Player.where(DRAFT_YEAR: "2017").or(Player.where(DISPLAY_FIRST_LAST: "Ben Simmons"))
+    @mvp = Award.includes(:picks => [:player, :user]).where(name: "MVP").order("player.mvp_rank asc")
+    @player_count = Player.count
+
   end
 
   def show
@@ -18,6 +22,7 @@ class PicksController < ApplicationController
   def new
     @pick = Pick.new
     @players = Player.all
+    @teams = Team.all
   end
 
   def create
@@ -55,8 +60,10 @@ class PicksController < ApplicationController
   end
 
   private
+
   def pick_params
     params.require(:pick).permit(:award_id, :player_id, :user_id, :league_id, :is_private, :season)
   end
+
 
 end

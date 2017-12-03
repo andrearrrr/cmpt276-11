@@ -1,43 +1,42 @@
-<p id="notice"><%= notice %></p>
-<h1><%= @player.name %></h2>
-
-<h4> <%= @player.name_decorated %> </h4>
+<h1> <%= @player.DISPLAY_FIRST_LAST %> </h1>
+<ul class="list-inline" align = "center">
+  <li class="list-inline-item"><strong>Height, Weight:</strong> <%= @player.PLAYER_HEIGHT %>, <%= @player.PLAYER_WEIGHT %></li>
+  <li class="list-inline-item"><strong>Team:</strong> <%= @player.TEAM_CITY + " " + @player.TEAM_NAME %></li>
+  <li class="list-inline-item"><strong>College:</strong> <%= @player.COLLEGE %></li>
+</ul>
 
 <div class="table-responsive">
 <table class="table table-hover table-condensed col-md-3">
     <thead>
-        <tr >
-            <th>Season</th>
-						<th>Age</th>
+        <tr>
+            <th>Player</th>
             <th>Team</th>
-            <th>Mins</th>
-						<th>PTS</th>
-						<th>REB</th>
-						<th>AST</th>
-						<th>STL</th>
-						<th>BLK</th>
-						<th>PER</th>
-						<th>BPM</th>
-						<th>VORP</th>
+            <th>PTS</th>
+            <th>REB</th>
+            <th>AST</th>
+            <th>+/-</th>
+            <th>TS%</th>
+            <th>USG%</th>
+            <th>MVP Rating</th>
+            <th> MVP Rank (of <%= Player.count %>) </th>
+            <th>Last Updated</th>
         </tr>
+
     </thead>
     <tbody>
-					<% @player.player_stats.order(season: :desc).each do |stat| %>
-					<tr>
-						<td> <%= stat.season %> </td>
-						<td> <%= stat.age %> </td>
-						<td> <%= stat.team %> </td>
-            <td> <%= stat.minutes %> </td>
-						<td> <%= stat.points %> </td>
-						<td> <%= stat.rebtot %> </td>
-						<td> <%= stat.assists %> </td>
-						<td> <%= stat.steals %> </td>
-						<td> <%= stat.blocks %> </td>
-						<td> <%= stat.per %> </td>
-						<td> <%= stat.bpm %> </td>
-						<td> <%= stat.vorp %> </td>
-					</tr>
-					<% end %>
+        <tr>
+          <td><%= @player.DISPLAY_FIRST_LAST%></td>
+          <td>  <%= @player.TEAM_ABBREVIATION %> </td>
+          <td>  <%= @player.PTS %> </td>
+          <td>  <%= @player.REB %> </td>
+          <td>  <%= @player.AST %> </td>
+          <td>  <%= @player.NET_RATING %> </td>
+          <td>  <%= @player.TS_PCT %> </td>
+          <td>  <%= @player.USG_PCT %> </td>
+          <td> <strong> <%= @player.mvp_rating %></strong> </td>
+          <td> <%= @player.mvp_rank %> </td>
+          <td>  <%= @player.updated_at %> </td>
+        </tr>
     </tbody>
 </table>
 </div>
