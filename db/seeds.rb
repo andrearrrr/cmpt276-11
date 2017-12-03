@@ -22,13 +22,6 @@ def seed_users
 		activated: 1,
 		activated_at: Time.zone.now)
 
-#Seeding some groups
-	Group.create(
-		name: "Test_name"
-	)
-	Group.create(
-		name: "Test_name2"
-	)
 end
 
 def read_csv
@@ -186,6 +179,6 @@ seed_leagues
 seed_awards
 seed_users
 seed_picks
-seed_fake_posts
+#seed_fake_posts
 #seed_fake_users
 #seed_fake_relationships
