@@ -4,7 +4,11 @@
 <h2> <%= button_to "Create a New Group", new_group_path, :method => :get %></h2>
 <br>
 <br>
-<h2> There are <%= @groups.count %> groups. </h2>
+<% if @groups.count == 1 %>
+<h2> There is currently <%= @groups.count %> group. </h2>
+<% else %>
+<h2> There are currently <%= pluralize(@groups.count, 'Group') %>. </h2>
+<% end %>
 
 
 
