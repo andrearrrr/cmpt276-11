@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  teamID: 1
+  abbreviation: MyString
+  teamName: MyString
+  simpleName: MyString
+  location: MyString
+
+two:
+  teamID: 1
+  abbreviation: MyString
+  teamName: MyString
+  simpleName: MyString
+  location: MyString

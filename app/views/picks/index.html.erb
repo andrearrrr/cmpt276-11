@@ -1,7 +1,75 @@
 <% if logged_in? %>
+<div class="text-center">
+	<%= link_to "Make a Pick!", new_pick_path, class:"btn btn-primary btn-lg text-centre"%>
+</div>
+	<h1> Award Leaders </h1>
+	<h2><%= link_to "Update Award Rankings", update_awards_path%></h2>
+	<h3> MVP - Most Valuable Player Rankings </h3>
+	<div class="table-responsive">
+	<table class="table table-hover table-condensed col-md-3">
+			<thead>
+					<tr>
+							<th>Rank</th>
+							<th>Player</th>
+							<th>Team</th>
+							<th>Points</th>
+							<th>Rebounds</th>
+							<th>Assists</th>
+							<th>MVP Rating</th>
+							<th>Last Updated</th>
+					</tr>
 
-	<h1><%= link_to "Make a Pick!", new_pick_path %> </h1>
-	<h2> Public Picks </h2>
+			</thead>
+			<tbody>
+						<% @players.to_a.sort_by(&:mvp_rating).reverse.take(5).each do |player| %>
+								<tr>
+									<td>  <%= player.mvp_rank %> </td>
+									<td><%= link_to player.DISPLAY_FIRST_LAST, player_path(player) %></td>
+									<td>  <%= player.TEAM_ABBREVIATION %> </td>
+									<td>  <%= player.PTS %> </td>
+									<td>  <%= player.REB %> </td>
+									<td>  <%= player.AST %> </td>
+									<td> <strong> <%= player.mvp_rating %></strong> </td>
+									<td>  <%= player.updated_at %> </td>
+								</tr>
+						<% end %>
+			</tbody>
+	</table>
+	</div>
+
+	<h3> ROY - Rookie of the Year Rankings </h3>
+	<div class="table-responsive">
+	<table class="table table-hover table-condensed col-md-3">
+			<thead>
+					<tr>
+						<th>Rank</th>
+							<th>Player</th>
+							<th>Team</th>
+							<th>Points</th>
+							<th>Rebounds</th>
+							<th>Assists</th>
+							<th>ROY Rating</th>
+							<th>Last Updated</th>
+					</tr>
+			</thead>
+			<tbody>
+						<% @rookies.to_a.sort_by(&:mvp_rating).reverse.take(5).each do |player| %>
+								<tr>
+									<td>  <%= player.rookie_rank %> </td>
+									<td><%= link_to player.DISPLAY_FIRST_LAST, player_path(player) %></td>
+									<td>  <%= player.TEAM_ABBREVIATION %> </td>
+									<td>  <%= player.PTS %> </td>
+									<td>  <%= player.REB %> </td>
+									<td>  <%= player.AST %> </td>
+									<td> <strong> <%= player.mvp_rating %></strong> </td>
+									<td>  <%= player.updated_at %> </td>
+
+
+								</tr>
+						<% end %>
+			</tbody>
+	</table>
+	</div>
 
 	<% @awards.each do |award| %>
 		<h3> <%= award.full_name %> </h3>
@@ -11,6 +79,13 @@
 						<tr>
 								<th>User</th>
 								<th>Player</th>
+								<% if award.name == "MVP" %>
+								<th> MVP Rating </th>
+								<th> MVP Rank (of <%= @players.count %>) </th>
+								<% elsif award.name == "ROY" %>
+								<th> ROY Rating </th>
+								<th> ROY Rank (of <%= @rookies.count %>) </th>
+								<% end %>
 								<th>Created At</th>
 						</tr>
 				</thead>
@@ -19,7 +94,14 @@
 								<% if !pick.is_private || is_admin? %>
 									<tr>
 										<td> <%= pick.user.name %></td>
-										<td> <%= link_to pick.player.name, player_path(pick.player) %> </td>
+										<td> <%= link_to pick.player.DISPLAY_FIRST_LAST, player_path(pick.player) %> </td>
+										<% if award.name == "MVP" %>
+										<td> <%= pick.player.mvp_rating %> </td>
+										<td> <%= pick.player.mvp_rank %> </td>
+										<% elsif award.name == "ROY" %>
+										<td> <%= pick.player.mvp_rating %> </td>
+										<td> <%= pick.player.rookie_rank %>  </td>
+										<% end %>
 										<td> <%= pick.created_at.strftime("%Y-%m-%d") %> </td>
 										<td> <%= link_to "View Pick", pick_path(pick) %></td>
 										<% if is_admin? %>

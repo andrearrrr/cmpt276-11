@@ -1,7 +1,11 @@
 class PicksController < ApplicationController
   def index
-    @picks = Pick.all
-    @awards = Award.all
+    @awards = Award.includes(:picks => [:player, :user]).all
+    @players = Player.all
+    @rookies = Player.where(DRAFT_YEAR: "2017").or(Player.where(DISPLAY_FIRST_LAST: "Ben Simmons"))
+    @mvp = Award.includes(:picks => [:player, :user]).where(name: "MVP").order("player.mvp_rank asc")
+    @player_count = Player.count
+
   end
 
   def show
@@ -18,6 +22,7 @@ class PicksController < ApplicationController
   def new
     @pick = Pick.new
     @players = Player.all
+    @teams = Team.all
   end
 
   def create
@@ -54,9 +59,51 @@ class PicksController < ApplicationController
     end
   end
 
+  def update_awards
+    url = "http://stats.nba.com/stats/leaguedashplayerbiostats?LeagueID=00&PerMode=PerGame&Season=2017-18&SeasonType=Regular%20Season"
+    data = parse_stats(url)
+    update_players(JSON.parse(data))
+    redirect_to picks_path, :notice => "Awards and stats updated."
+  end
+
   private
+
   def pick_params
     params.require(:pick).permit(:award_id, :player_id, :user_id, :league_id, :is_private, :season)
+  end
+
+  def parse_stats(url)
+    headers = {"Accept-Language": "en-us","User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Safari/604.1.38","Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8", 'referer': 'http://stats.nba.com/'}
+    resp = RestClient.get(url, headers = headers )
+  end
+
+  def read_json(fname)
+  	file = File.read(Rails.root.join('lib', 'seeds', fname))
+  	return data = JSON.parse(file)
+  end
+
+  def update_players(data)
+    stats = data['resultSets'][0]['rowSet']
+    headers = data['resultSets'][0]['headers']
+    stat_cols = ["GP","PTS","REB","AST","NET_RATING","USG_PCT","TS_PCT"]
+    # loop through every player in the data set
+    stats.each do |row|
+      # create a hash with the player's data
+      p_dict = Hash[headers.zip(row)]
+      # get the player from the DB (returns nil if DNE)
+      player = Player.find_by(PERSON_ID: p_dict["PLAYER_ID"])
+      # if player exists, update stats
+      if player
+        puts "PLAYER EXISTs"
+        # update each of the stat columns
+        stat_cols.each do |stat|
+          player[stat] = p_dict[stat]
+        end
+        puts player.to_json
+      else
+        puts "DNE"
+      end
+    end
   end
 
 end

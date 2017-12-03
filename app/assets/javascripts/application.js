@@ -16,6 +16,4 @@
 //= require jquery-ui
 //= require jquery.turbolinks
 //= require turbolinks
-//= require dataTables/jquery.dataTables
-//= require players
 //= require_tree .
