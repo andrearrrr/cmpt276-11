@@ -129,49 +129,6 @@ def seed_players
 	end
 end
 
-def seed_player_stats
-	csv = read_csv
-	csv.each do |row|
-		identifier = row['Identifier']
-		player = Player.find_by(identifier: identifier)
-
-		p = PlayerStat.new
-		p.player_id = player.id
-		p.season = row["Season"]
-		p.age = row["Age"]
-		p.team = row["Tm"]
-		p.games = row['G']
-		p.games_started = row['GS']
-		p.minutes = row['MP']
-		p.fg = row['FG']
-		p.fga = row['FGA']
-		p.fgpct = row['FG_pct']
-		p.fg3 = row['3P']
-		p.fg3a = row['3PA']
-		p.fg3pct = row['3P_pct']
-		p.efgpct = row['eFG_pct']
-		p.ft = row['FT']
-		p.fta = row['FTA']
-		p.ftpct = row['FT_pct']
-		p.reboff = row['ORB']
-		p.rebdef = row['DRB']
-		p.rebtot = row['TRB']
-		p.assists = row['AST']
-		p.steals = row['STL']
-		p.blocks = row['BLK']
-		p.tovs = row['TOV']
-		p.points = row['Pts']
-		p.per = row['PER']
-		p.tspct = row['TS_pct']
-		p.usage = row['USG_pct']
-		p.obpm = row['OBPM']
-		p.dbpm = row['DBPM']
-		p.bpm = row['BPM']
-		p.vorp = row['VORP']
-		p.save
-	end
-end
-
 def seed_leagues
 	l = League.create(name: 'NBA', description: "National Basketball Association")
 	l.save
@@ -249,13 +206,12 @@ users = User.order(:created_at).take(6)
 	end
 end
 
-# seed_leagues
-# seed_teams
+seed_leagues
+seed_teams
 seed_players
-#seed_player_stats
-# seed_awards
-# seed_users
-# seed_picks
-# seed_fake_posts
-# seed_fake_users
+seed_awards
+seed_users
+seed_picks
+seed_fake_posts
+seed_fake_users
 #seed_fake_relationships
