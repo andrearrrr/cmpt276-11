@@ -22,6 +22,7 @@ def seed_users
 		password: "cmpt276",
 		activated: 1,
 		activated_at: Time.zone.now)
+
 end
 
 def read_csv

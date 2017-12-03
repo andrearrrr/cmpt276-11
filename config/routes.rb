@@ -27,6 +27,10 @@ Rails.application.routes.draw do
   resources :password_resets,    only: [:new, :create, :edit, :update]
   get '/posts/:id', to: 'posts#index', as: 'post'
   resources :posts, only: [:create, :destroy]
+  resources :groups do
+    get 'join', to: :create, controller: 'memberships'
+    get 'leave', to: :destroy, controller: 'memberships'
+  end
 
   root 'static_pages#home'
 
