@@ -9,4 +9,13 @@ class Pick < ApplicationRecord
 	validates :player_id,  presence: true
 	validates :league_id,  presence: true
 	validates :user_id,  presence: true
+
+	def player_name
+		player.try(:name)
+	end
+
+	def player_name=(name)
+		self.player= Player.find_by_name(name: name) if name.present?
+	end
+
 end

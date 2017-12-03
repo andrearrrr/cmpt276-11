@@ -20,18 +20,19 @@ class PicksControllerTest < ActionDispatch::IntegrationTest
 
   test "should create pick and redirect to show" do
     assert_difference('Pick.count') do
-      post picks_path, params: {pick: { user_id: users(:scott).id,
-        player_id: players(:one).id, league_id: leagues(:one).id, award_id: awards(:one).id, season: 2018 } }
+      post picks_path, params: {pick: { user_id: users(:archer).id,
+        player_id: players(:one).id, league_id: leagues(:one).id, award_id: awards(:two).id, season: 2018 } }
     end
     assert_redirected_to pick_path(Pick.last)
     assert_equal 'Pick submitted!', flash[:success]
   end
 
-  test "should delete pick and redirect to index" do
+  test "should delete pick and redirect to user" do
+    user = picks(:one).user
     assert_difference('Pick.count', -1) do
       delete pick_path(picks(:one))
     end
-    assert_redirected_to picks_path
+    assert_redirected_to user_path(user.id)
     assert_equal 'Pick successfully deleted.', flash[:notice]
   end
 
