@@ -20,6 +20,7 @@ def seed_users
 		name: "Admin User",
 		email: "admin@test.com",
 		password: "cmpt276",
+		admin: 1,
 		activated: 1,
 		activated_at: Time.zone.now)
 
