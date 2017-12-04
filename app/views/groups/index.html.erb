@@ -1,7 +1,7 @@
 <% provide(:title, 'Groups') %>
 <p id="notice"><%= notice %></p>
 <h1> Groups </h1>
-<h2> <%= button_to "Create a New Group", new_group_path, :method => :get %></h2>
+<h2> <%= button_to "Create a New Group", new_group_path, :method => :get, :class => "btn btn-primary" %></h2>
 <br>
 <br>
 <% if @groups.count == 1 %>
