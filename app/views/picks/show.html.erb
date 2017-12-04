@@ -6,9 +6,9 @@
 <h3>Privacy: <%= if @pick.is_private then "Private" else "Public" end %> </h3>
 <% if @pick.user == current_user || is_admin? %>
 	<p> <%= link_to "Edit", edit_pick_path(@pick) %> </p>
-	<p> <%= link_to "Delete", pick_path(@pick), data: { confirm: 'Are you sure?' }, :method => :delete %> </p>	
-	<p> Share your Pick 
-		<%= social_share_button_tag("I predict " + @pick.player.DISPLAY_FIRST_LAST + "  will in "+ @pick.award.full_name , :url => "https://mysportspicks.herokuapp.com/")  %>
+	<p> <%= link_to "Delete", pick_path(@pick), data: { confirm: 'Are you sure?' }, :method => :delete %> </p>
+	<p> Share your Pick
+		<%= social_share_button_tag("I predict " + @pick.player.DISPLAY_FIRST_LAST + "  will win "+ @pick.award.full_name , :url => "https://mysportspicks.herokuapp.com/")  %>
 	</li>
 
 <% end %>
